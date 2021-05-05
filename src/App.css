@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  max-height: 15vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,4 +35,26 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.App-table {
+  width: 100%;
+}
+
+.App-table th[scope="row"] {
+  text-transform: capitalize;
+  text-align: right;
+  padding-right: 0.5rem;
+}
+
+.App-table th[scope="col"] {
+  text-transform: capitalize;
+  text-align: left;
+  padding-bottom: 0.5rem;
+}
+
+.App-table td {
+  text-align: left;
+  padding: 0.3rem;
 }
