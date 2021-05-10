@@ -27,11 +27,11 @@ function App() {
               const dayMenu = menu[day];
 
               return (
-                <tr>
+                <tr key={`row-${day}-${dayMenu}-${dayIndex}`}>
                   <th scope="row">{day}</th>
                   {dayMenu.map((receipe, index) => {
                     return (
-                      <td key={`${day}-${index}-meal`}>
+                      <td key={`cell-${day}-${index}-meal`}>
                         {receipe.title}
                       </td>
                     )
