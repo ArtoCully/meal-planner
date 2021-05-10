@@ -1,9 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { weeklyMenu } from './dummyData';
+import { weeklyMenu, receipes } from './dummyData';
+import { generateDailyMenu } from './utils/generateMenu';
 
 function App() {
+
+  console.log('generateDailyMenu', generateDailyMenu(receipes));
 
   return (
     <div className="App">

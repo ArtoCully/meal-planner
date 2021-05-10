@@ -1,4 +1,4 @@
-enum ITimeOfMeal {
+export enum ITimeOfMeal {
   breakfast = 'breakfast',
   lunch = 'lunch',
   dinner = 'dinner'
