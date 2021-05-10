@@ -150,19 +150,19 @@ export const weeklyMenu: IWeeklyMenuProps[] = [
       }
     ],
   },
-    { 'saturday': [
-      {
-        title: 'cereal',
-        when: ITimeOfMeal.breakfast,
-      },
-      {
-        title: 'fish & chips takeaway',
-        when: ITimeOfMeal.lunch,
-      },
-      {
-        title: 'tortallini',
-        when: ITimeOfMeal.dinner,
-      }
-    ],
-  }
+  { 'sunday': [
+    {
+      title: 'cereal',
+      when: ITimeOfMeal.breakfast,
+    },
+    {
+      title: 'fish & chips takeaway',
+      when: ITimeOfMeal.lunch,
+    },
+    {
+      title: 'tortallini',
+      when: ITimeOfMeal.dinner,
+    }
+  ],
+}
 ]
