@@ -1,12 +1,21 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { weeklyMenu, receipes } from './dummyData';
-import { generateDailyMenu } from './utils/generateMenu';
+import { weeklyMenu, receipes, IReceipe } from './dummyData';
+import { generateDailyMenu, generateWeeklyMenu } from './utils/generateMenu';
+import { generateDayOfWeek } from './utils/generateDayOfWeek';
 
 function App() {
 
-  console.log('generateDailyMenu', generateDailyMenu(receipes));
+  console.log('generateDailyMenu', generateDailyMenu(receipes, generateDayOfWeek(6)));
+  console.log('generateWeeklyMenu', generateWeeklyMenu(receipes));
+
+  const [weeklyMenuState, setWeeklyMenuState] = React.useState(weeklyMenu);
+  const handleGenerateWeeklyMenu = () => {
+    const menu = generateWeeklyMenu(receipes);
+    console.log('meun', menu);
+    setWeeklyMenuState(menu);
+  }
 
   return (
     <div className="App">
@@ -14,7 +23,11 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <section>
-        <button className="App-btn">Generate Random Receipes</button>
+        <button
+          className="App-btn"
+          onClick={handleGenerateWeeklyMenu}>
+            Generate Random Receipes
+        </button>
         <table className="App-table">
           <thead>
             <tr>
@@ -25,7 +38,7 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {weeklyMenu.map((menu, dayIndex) => {
+            {weeklyMenuState.map((menu, dayIndex) => {
               const day = Object.keys(menu)[0];
               const dayMenu = menu[day];
 

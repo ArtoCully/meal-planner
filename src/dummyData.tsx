@@ -4,7 +4,7 @@ export enum ITimeOfMeal {
   dinner = 'dinner'
 }
 
-interface IReceipe {
+export interface IReceipe {
   title: string;
   when: ITimeOfMeal[];
 }
@@ -19,12 +19,12 @@ export enum IDayOfWeek {
   sunday,
 }
 
-interface IDailyMenuProps {
+export interface IDailyMenuProps {
   title: string;
   when: ITimeOfMeal;
 }
 
-interface IWeeklyMenuProps {
+export interface IWeeklyMenuProps {
   [key: string]: IDailyMenuProps[];
 }
 
@@ -35,7 +35,7 @@ export const receipes: IReceipe[] = [
   },
   {
     title: 'tortalini w/ tomatoe juice',
-    when: [ITimeOfMeal.lunch, ITimeOfMeal.dinner]
+    when: [ITimeOfMeal.lunch, ITimeOfMeal.dinner],
   },
   {
     title: 'soup w/ garlic bread',
@@ -151,18 +151,18 @@ export const weeklyMenu: IWeeklyMenuProps[] = [
     ],
   },
   { 'sunday': [
-    {
-      title: 'cereal',
-      when: ITimeOfMeal.breakfast,
-    },
-    {
-      title: 'fish & chips takeaway',
-      when: ITimeOfMeal.lunch,
-    },
-    {
-      title: 'tortallini',
-      when: ITimeOfMeal.dinner,
-    }
-  ],
-}
+      {
+        title: 'cereal',
+        when: ITimeOfMeal.breakfast,
+      },
+      {
+        title: 'fish & chips takeaway',
+        when: ITimeOfMeal.lunch,
+      },
+      {
+        title: 'tortallini',
+        when: ITimeOfMeal.dinner,
+      }
+    ],
+  }
 ]
