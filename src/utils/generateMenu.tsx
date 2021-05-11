@@ -2,7 +2,6 @@ import {
   receipes as defaultReceipes,
   ITimeOfMeal,
   IReceipe,
-  IDayOfWeek,
   IDailyMenuProps,
   IWeeklyMenuProps,
 } from '../dummyData';
@@ -24,17 +23,14 @@ export function generateDailyMenu(
   // get one breakfast,
   const breakfastMeals = receipes.filter(receipe => receipe.when.indexOf(ITimeOfMeal.breakfast) !== -1);
   const randomBreakfast = getRandomMeal(breakfastMeals, ITimeOfMeal.breakfast);
-  // console.log('breakfastMeals', breakfastMeals, randomBreakfast);
 
   // get one lunch
   const lunchMeals = receipes.filter(receipe => receipe.when.indexOf(ITimeOfMeal.lunch) !== -1);
   const randomLunch = getRandomMeal(lunchMeals, ITimeOfMeal.lunch)
-  // console.log('lunchMeals', lunchMeals, randomLunch);
 
   // get one dinner 
   const dinnerMeals = receipes.filter(receipe => receipe.when.indexOf(ITimeOfMeal.dinner) !== -1);
   const randomDinner = getRandomMeal(dinnerMeals, ITimeOfMeal.dinner);
-  // console.log('dinnerMeals', dinnerMeals, randomDinner);
 
   let a = [];
   a.push(randomBreakfast)
@@ -47,16 +43,13 @@ export function generateDailyMenu(
 
 export function generateWeeklyMenu(receipes = defaultReceipes) {
   const week = [0, 1, 2, 3, 4, 5, 6];
-  console.log('week', week);
   let result: IWeeklyMenuProps[] = [];
 
   week.forEach(d => {
     const day = generateDayOfWeek(d);
     const dayMenu = generateDailyMenu(receipes, day);
-    console.log('dayMenu', dayMenu);
     result.push(dayMenu);
   });
 
-  console.log('result', result);
   return result;
 }

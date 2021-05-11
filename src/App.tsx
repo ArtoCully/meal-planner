@@ -1,19 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { weeklyMenu, receipes, IReceipe } from './dummyData';
-import { generateDailyMenu, generateWeeklyMenu } from './utils/generateMenu';
-import { generateDayOfWeek } from './utils/generateDayOfWeek';
+import { weeklyMenu, receipes } from './dummyData';
+import { generateWeeklyMenu } from './utils/generateMenu';
 
 function App() {
-
-  console.log('generateDailyMenu', generateDailyMenu(receipes, generateDayOfWeek(6)));
-  console.log('generateWeeklyMenu', generateWeeklyMenu(receipes));
-
   const [weeklyMenuState, setWeeklyMenuState] = React.useState(weeklyMenu);
+
   const handleGenerateWeeklyMenu = () => {
     const menu = generateWeeklyMenu(receipes);
-    console.log('meun', menu);
     setWeeklyMenuState(menu);
   }
 
