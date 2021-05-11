@@ -38,6 +38,17 @@
   }
 }
 
+.App-btn {
+  background: orange;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  color: shite;
+  color: white;
+  padding: 1em 3em;
+  margin: 1em auto;
+  cursor: pointer;
+}
 
 .App-table {
   width: 100%;
