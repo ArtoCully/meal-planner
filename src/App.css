@@ -50,6 +50,22 @@
   cursor: pointer;
 }
 
+.App-top-nav {
+  position: relative;
+}
+
+.App-top-nav ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-gap: 10px;
+}
+
+.App-top-nav a {
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
 .App-table {
   width: 100%;
 }

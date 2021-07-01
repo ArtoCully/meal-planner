@@ -1,58 +1,33 @@
 import React from 'react';
+import {
+  BrowserRouter,
+  Link,
+} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import { weeklyMenu, receipes } from './dummyData';
-import { generateWeeklyMenu } from './utils/generateMenu';
+import Routes from './Routes';
 
 function App() {
-  const [weeklyMenuState, setWeeklyMenuState] = React.useState(weeklyMenu);
-
-  const handleGenerateWeeklyMenu = () => {
-    const menu = generateWeeklyMenu(receipes);
-    setWeeklyMenuState(menu);
-  }
-
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <section>
-        <button
-          className="App-btn"
-          onClick={handleGenerateWeeklyMenu}>
-            Generate Random Receipes
-        </button>
-        <table className="App-table">
-          <thead>
-            <tr>
-              <td></td>
-              <th scope="col">Breakfast</th>
-              <th scope="col">Lunch</th>
-              <th scope="col">Dinner</th>
-            </tr>
-          </thead>
-          <tbody>
-            {weeklyMenuState.map((menu, dayIndex) => {
-              const day = Object.keys(menu)[0];
-              const dayMenu = menu[day];
 
-              return (
-                <tr key={`row-${day}-${dayMenu}-${dayIndex}`}>
-                  <th scope="row">{day}</th>
-                  {dayMenu.map((receipe, index) => {
-                    return (
-                      <td key={`cell-${day}-${index}-meal`}>
-                        {receipe.title}
-                      </td>
-                    )
-                  })}
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-      </section>
+      <BrowserRouter>
+        <nav className="App-top-nav">
+            <ul>
+              <li>
+                <Link to="/">Weekly Menu</Link>
+              </li>
+              <li>
+                <Link to="/add-receipe">Add Receipe</Link>
+              </li>
+            </ul>
+        </nav>
+
+        <Routes />
+      </BrowserRouter>
     </div>
   );
 }
