@@ -70,6 +70,7 @@
   width: 100%;
 }
 
+/* Table Styles */
 .App-table th[scope="row"] {
   text-transform: capitalize;
   text-align: right;
@@ -85,4 +86,68 @@
 .App-table td {
   text-align: left;
   padding: 0.3rem;
+}
+
+@media (max-width: 530px) {
+  .App-table {
+    overflow-y: hidden;
+  }
+
+  table.App-table,
+  .App-table thead,
+  .App-table td,
+  .App-table th,
+  .App-table tr {
+    display: block;
+  }
+
+  .App-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .App-table th[scope="row"] {
+    text-align: left;
+    padding-left: 118px;
+  }
+
+  .App-table tr {
+    margin: 0 0 30px 0;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+  }
+
+  .App-table td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 118px;
+  }
+
+  .App-table td::before {
+    position: absolute;
+    top: 50%;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    transform: translate(0, -50%);
+  }
+
+  .App-table tbody td::before {
+    font-weight: bold;
+  }
+
+  .App-table tbody td:nth-of-type(1)::before {
+    content: 'Breakfast';
+  }
+
+  .App-table tbody td:nth-of-type(2)::before {
+    content: 'Lunch';
+  }
+
+  .App-table tbody td:nth-of-type(3)::before {
+    content: 'Dinner';
+  }
 }
