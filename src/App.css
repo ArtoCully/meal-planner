@@ -50,6 +50,12 @@
   cursor: pointer;
 }
 
+.App-btn__generate-receipe {
+  position: relative;
+  z-index: 9999;
+  margin-top: -10px;
+}
+
 .App-top-nav {
   position: fixed;
   bottom: 0;
@@ -85,11 +91,12 @@
   color: #ffffff;
 }
 
+/* Table Styles */
 .App-table {
   width: 100%;
+  padding: 25px 10px;
 }
 
-/* Table Styles */
 .App-table th[scope="row"] {
   text-transform: capitalize;
   text-align: right;
@@ -132,26 +139,28 @@
   }
 
   .App-table tr {
-    margin: 0 0 30px 0;
+    margin: 0 0 20px 0;
+    padding: 0 0 20px;
+    border-bottom: 1px solid #eee;
     display: flex;
     flex-direction: column;
-    width: 100vw;
   }
 
   .App-table td {
     border: none;
-    border-bottom: 1px solid #eee;
     position: relative;
     padding-left: 118px;
+    width: 50vw;
   }
 
   .App-table td::before {
     position: absolute;
     top: 50%;
     left: 6px;
-    width: 45%;
+    width: 94px;
     padding-right: 10px;
     transform: translate(0, -50%);
+    text-align: right;
   }
 
   .App-table tbody td::before {
@@ -159,14 +168,14 @@
   }
 
   .App-table tbody td:nth-of-type(1)::before {
-    content: 'Breakfast';
+    content: 'Breakfast:';
   }
 
   .App-table tbody td:nth-of-type(2)::before {
-    content: 'Lunch';
+    content: 'Lunch:';
   }
 
   .App-table tbody td:nth-of-type(3)::before {
-    content: 'Dinner';
+    content: 'Dinner:';
   }
 }

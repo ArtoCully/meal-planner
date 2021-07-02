@@ -13,7 +13,7 @@ export default function WeeklyMenu() {
   return (
     <section>
         <button
-          className="App-btn"
+          className="App-btn App-btn__generate-receipe"
           onClick={handleGenerateWeeklyMenu}>
             Generate Random Receipes
         </button>
