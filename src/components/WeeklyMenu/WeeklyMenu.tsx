@@ -15,7 +15,7 @@ export default function WeeklyMenu() {
         <button
           className="App-btn App-btn__generate-receipe"
           onClick={handleGenerateWeeklyMenu}>
-            Generate Random Receipes
+            Generate Weekly Meal Plan
         </button>
         <table className="App-table">
           <thead>
