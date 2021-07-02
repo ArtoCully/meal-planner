@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   BrowserRouter,
-  Link,
+  NavLink,
 } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
@@ -18,10 +18,10 @@ function App() {
         <nav className="App-top-nav">
             <ul>
               <li>
-                <Link to="/">Weekly Menu</Link>
+                <NavLink to="/" activeClassName="active">Weekly Menu</NavLink>
               </li>
               <li>
-                <Link to="/add-receipe">Add Receipe</Link>
+                <NavLink to="/add-receipe" activeClassName="active">Add Receipe</NavLink>
               </li>
             </ul>
         </nav>

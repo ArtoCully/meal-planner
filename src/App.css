@@ -51,19 +51,38 @@
 }
 
 .App-top-nav {
-  position: relative;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: orange;
+  color: white;
+  z-index: 999;
+  border-top: 1px solid #a06800;
 }
 
 .App-top-nav ul {
   list-style: none;
+  padding: 0;
+  margin: 15px 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-gap: 10px;
 }
 
+.App-top-nav ul li:not(:last-child) {
+  border-right: 1px solid #a06800;
+}
+
 .App-top-nav a {
   text-transform: uppercase;
   text-decoration: none;
+  color: #a06800;
+  font-weight: bold;
+}
+
+.App-top-nav a.active {
+  color: #ffffff;
 }
 
 .App-table {
