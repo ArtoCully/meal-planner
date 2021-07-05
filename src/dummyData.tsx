@@ -7,6 +7,7 @@ export enum ITimeOfMeal {
 export interface IReceipe {
   title: string;
   when: ITimeOfMeal[];
+  ingredients: string[];
 }
 
 export enum IDayOfWeek {
@@ -32,30 +33,64 @@ export const receipes: IReceipe[] = [
   {
     title: 'cereal',
     when: [ITimeOfMeal.breakfast],
+    ingredients: [
+      'milk',
+      'weetabix',
+      'fruits'
+    ],
   },
   {
     title: 'tortalini w/ tomatoe juice',
     when: [ITimeOfMeal.lunch, ITimeOfMeal.dinner],
+    ingredients: [
+      'tomatoe',
+      'juice',
+      'tortalini',
+      'pepper',
+    ],
   },
   {
     title: 'soup w/ garlic bread',
-    when: [ITimeOfMeal.lunch, ITimeOfMeal.dinner]
-  },
+    when: [ITimeOfMeal.lunch, ITimeOfMeal.dinner],
+    ingredients: [
+      'garlic bread',
+      'double cream',
+      'pepper',
+    ],
   {
     title: 'baked potatoes',
-    when: [ITimeOfMeal.lunch, ITimeOfMeal.dinner]
+    when: [ITimeOfMeal.lunch, ITimeOfMeal.dinner],
+    ingredients: [
+      '3 potatoes',
+      'tuna fish',
+    ],
   },
   {
     title: 'spanish bean',
-    when: [ITimeOfMeal.lunch, ITimeOfMeal.dinner]
+    when: [ITimeOfMeal.lunch, ITimeOfMeal.dinner],
+    ingredients: [
+      'beans',
+      'lentils',
+    ],
   },
   {
     title: 'croissant w/ egg and salmon',
-    when: [ITimeOfMeal.breakfast, ITimeOfMeal.lunch]
+    when: [ITimeOfMeal.breakfast, ITimeOfMeal.lunch],
+    ingredients: [
+      '3 croissants',
+      '2 eggs',
+      '1 smoked salmon',
+    ],
   },
   {
     title: 'lentil dhal',
-    when: [ITimeOfMeal.lunch, ITimeOfMeal.dinner]
+    when: [ITimeOfMeal.lunch, ITimeOfMeal.dinner],
+    ingredients: [
+      'lentils',
+      'dhal',
+      'salt',
+      'pepper',
+    ],
   }
 ];
 
