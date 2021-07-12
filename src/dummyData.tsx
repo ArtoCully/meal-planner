@@ -57,6 +57,7 @@ export const receipes: IReceipe[] = [
       'double cream',
       'pepper',
     ],
+  },
   {
     title: 'baked potatoes',
     when: [ITimeOfMeal.lunch, ITimeOfMeal.dinner],

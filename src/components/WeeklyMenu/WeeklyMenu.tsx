@@ -10,6 +10,8 @@ export default function WeeklyMenu() {
     setWeeklyMenuState(menu);
   }
 
+  console.log('weeklyMenuStat', weeklyMenuState, 'receipes', receipes);
+
   return (
     <section>
         <button
