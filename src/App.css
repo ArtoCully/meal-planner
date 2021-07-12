@@ -83,12 +83,12 @@
 .App-top-nav a {
   text-transform: uppercase;
   text-decoration: none;
-  color: #a06800;
+  color: #ffffff;
   font-weight: bold;
 }
 
 .App-top-nav a.active {
-  color: #ffffff;
+  color: #a06800;
 }
 
 /* Table Styles */
