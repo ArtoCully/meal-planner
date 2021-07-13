@@ -1,6 +1,7 @@
 import React from 'react';
 import { weeklyMenu, receipes } from '../../dummyData';
 import { generateWeeklyMenu } from '../../utils/generateMenu';
+import { fetchRecipes } from '../../services/api';
 
 export default function WeeklyMenu() {
   const [weeklyMenuState, setWeeklyMenuState] = React.useState(weeklyMenu);
@@ -9,6 +10,13 @@ export default function WeeklyMenu() {
     const menu = generateWeeklyMenu(receipes);
     setWeeklyMenuState(menu);
   }
+
+  React.useEffect(() => {
+    (async () => {
+      const recipes = await fetchRecipes();
+      console.log('recipes', recipes);
+    })();
+  }, []);
 
   console.log('weeklyMenuStat', weeklyMenuState, 'receipes', receipes);
 
