@@ -18,10 +18,10 @@ function App() {
         <nav className="App-top-nav">
             <ul>
               <li>
-                <NavLink to="/" activeClassName="active">Weekly Menu</NavLink>
+                <NavLink to="/menu/weekly" activeClassName="active">Weekly Menu</NavLink>
               </li>
               <li>
-                <NavLink to="/add-receipe" activeClassName="active">Add Receipe</NavLink>
+                <NavLink to="/recipes/add" activeClassName="active">Add Receipe</NavLink>
               </li>
             </ul>
         </nav>
