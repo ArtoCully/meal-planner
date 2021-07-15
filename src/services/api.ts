@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IRecipe } from '../models/recipe';
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -23,11 +24,22 @@ instance.interceptors.response.use(response => {
 });
 
 export async function fetchRecipes() {
-  let data = [];
   try {
-    data = await instance.get('/recipes');
+    const data = await instance.get('/recipes');
+    return data;
   } catch (e) {
     console.log('fetching recipes errors', e);
   }
-  return data;
 };
+
+export async function createRecipe(params: IRecipe) {
+  try {
+    const result = await instance.post('/recipes', params);
+
+    if (result) {
+      console.log('result', result);
+    }
+  } catch (e) {
+    console.log('create recipe error');
+  }
+}

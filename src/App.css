@@ -38,6 +38,12 @@
   }
 }
 
+.App-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
 .App-btn {
   background: orange;
   border: none;
@@ -50,12 +56,17 @@
   cursor: pointer;
 }
 
+.App-btn--small {
+  padding: 0.5em 1.5em;
+}
+
 .App-btn__generate-receipe {
   position: relative;
   z-index: 9999;
   margin-top: -10px;
 }
 
+/** Top Nav **/
 .App-top-nav {
   position: fixed;
   bottom: 0;
@@ -178,4 +189,41 @@
   .App-table tbody td:nth-of-type(3)::before {
     content: 'Dinner:';
   }
+}
+
+/** Add Recipe **/
+.App-recipe-add__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.App-form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.App-form-group input {
+  padding: 0.3em 0.8em;
+}
+
+.App-form-group label {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 15px 0;
+}
+
+.App-form-group--inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.App-form-group--inline > *:not(:last-child) {
+  margin-right: 10px;
 }
