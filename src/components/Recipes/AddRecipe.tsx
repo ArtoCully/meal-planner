@@ -1,6 +1,6 @@
 import React from 'react';
-import { fetchRecipes, createRecipe } from '../../services/api';
-import { IRecipe, ITimeOfMeal } from '../../models/recipe';
+import { createRecipe } from '../../services/api';
+import { IRecipe } from '../../models/recipe';
 
 export default function AddRecipe() {
   const formObject: IRecipe = {
