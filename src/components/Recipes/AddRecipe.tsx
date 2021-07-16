@@ -139,8 +139,8 @@ export default function AddRecipe() {
               console.log('isChecked', value, isChecked);
               return (
                 <div className="App-form-group--inline" key={index}>
-                  <input type="checkbox" id={`App-recipe-add__when--${value}`} name={`when-${value}`} value={value} onChange={handleOnChangeCheckbox} />
-                  <label htmlFor={`when-${value}`}>
+                  <input type="checkbox" id={`App-recipe-add__when--${value}`} name="when" value={value} onChange={handleOnChangeCheckbox} />
+                  <label htmlFor={`App-recipe-add__when--${value}`}>
                     {value}
                   </label>
                 </div>
