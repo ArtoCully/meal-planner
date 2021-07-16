@@ -3,21 +3,27 @@ import { fetchRecipes, createRecipe } from '../../services/api';
 import { IRecipe, ITimeOfMeal } from '../../models/recipe';
 
 export default function AddRecipe() {
-  const [formState, setFormState] = React.useState({
+  const formObject: IRecipe = {
     title: '',
-    when: '',
-    ingredients: [],
-  });
+    when: [],
+    ingredients: [''],
+  }
+  const whenState: any = {
+    'breakfast': false,
+    'lunch': false,
+    'dinner': false
+  }
+  const [formState, setFormState] = React.useState(formObject);
 
-  const [ingredientState, setIngredientState] = React.useState(['']);
-
-  // React.useEffect(() => {
-  //   (async () => {
-  //     console.log('ingredientState', ingredientState);
-  //     const recipes = await fetchRecipes();
-  //     console.log('recipes', recipes);
-  //   })();
-  // }, [ingredientState]);
+  React.useEffect(() => {
+    // (async () => {
+    //   console.log('ingredientState', ingredientState);
+    //   const recipes = await fetchRecipes();
+    //   console.log('recipes', recipes);
+    // })();
+  }, [
+    formState,
+  ]);
 
   const handleDeleteIngredient = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -26,13 +32,12 @@ export default function AddRecipe() {
     const dataSet = event && event.currentTarget && event.currentTarget.dataset
     const key = dataSet && dataSet.key;
     const numKey = Number(key);
-    const ingredientsList = ingredientState.filter((value: string, index: number) => index !== numKey);
-    setIngredientState(ingredientsList);
+    const ingredientsList = formState.ingredients.filter((value: string, index: number) => index !== numKey);
     const formData = {
       ...formState,
       ingredients: ingredientsList,
     };
-    // setFormState(formData);
+    setFormState(formData);
   }
 
   const handleAddIngredient = (key: number, ingredient: string, inc?: boolean) => (event?: React.MouseEvent<HTMLButtonElement>) => {
@@ -40,7 +45,7 @@ export default function AddRecipe() {
       event.preventDefault();
     }
 
-    const ingredientList = ingredientState.map((val, index) => {
+    const ingredientList = formState.ingredients.map((val, index) => {
       if (key === index) {
         return ingredient;
       }
@@ -55,7 +60,10 @@ export default function AddRecipe() {
       updatedIngredientList = [...ingredientList];
     }
 
-    setIngredientState(updatedIngredientList);
+    const formData = { ...formState,
+      ingredients: updatedIngredientList,
+    }
+    setFormState(formData);
   }
 
   const handleOnChangeIngredient = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,32 +74,52 @@ export default function AddRecipe() {
     handleAddIngredient(numKey, value)();
   }
 
-  const handleAddRecipe = async () => {
-    const r = await createRecipe({
-      title: 'Apples',
-      when: [ITimeOfMeal.breakfast],
-      ingredients: [
-        '2 apples',
-        '1 banana',
-        '500ml milk'
-      ]
-    });
+  const handleAddRecipe = async (event: React.SyntheticEvent<HTMLButtonElement>) => {
+    event.preventDefault();
 
-    console.log('r', r);
+    const formResponse = await createRecipe(formState);
+    console.log('formResponse', formResponse);
   };
 
-  const handleOnChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChangeInputText = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     console.log(event);
     const target = event && event.target;
-    const name = target && target.name;
     const value = target && target.value;
+    const name: string = target && target.name;
     const data = {
       ...formState,
-      [name]: value
-    };
-
+      [name]: value,
+    }
     setFormState(data);
+  }
+
+  const handleOnChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('event', event);
+    const name = event.target.name;
+    const value = event.target.value;
+    const checked = event.target.checked;
+    console.log('name', name, 'value', value, 'checked', checked);
+
+    let when: string[] = formState.when.length > 0 ? formState.when : [];
+
+    if (checked) {
+      if (!when.find((val) => val === value)) {
+        when.push(value);
+        const formData = {
+          ...formState,
+          when
+        }
+        setFormState(formData);
+      }
+    } else {
+      const updatedWhen = when.filter((val) => val !== value);
+      const formData = {
+        ...formState,
+        when: updatedWhen
+      }
+      setFormState(formData);
+    }
   }
 
   return (
@@ -99,28 +127,39 @@ export default function AddRecipe() {
       <h2>Add Recipe</h2>
       <form className="App-recipe-add__form">
         <div className="App-form-group">
-          <label>Title</label>
-          <input type="text" id="App-recipe-add__title" name="title" onChange={handleOnChangeInput} />
+          <label className="App-form-group__label-title">Title</label>
+          <input type="text" id="App-recipe-add__title" name="title" onChange={handleOnChangeInputText} />
         </div>
 
         <div className="App-form-group">
-          <label>When</label>
-          <input type="checkbox" id="App-recipe-add__when--breakfast" name="when" value="breakfast" onChange={handleOnChangeInput} />
-          <input type="checkbox" id="App-recipe-add__when--lunch" name="when" value="lunch" onChange={handleOnChangeInput} />
-          <input type="checkbox" id="App-recipe-add__when--dinner" name="when" value="dinner" onChange={handleOnChangeInput} />
+          <label className="App-form-group__label-title">When</label>
+          {
+            Object.keys(whenState).map((value: string, index: number) => {
+              const isChecked: boolean = whenState[value];
+              console.log('isChecked', value, isChecked);
+              return (
+                <div className="App-form-group--inline" key={index}>
+                  <input type="checkbox" id={`App-recipe-add__when--${value}`} name={`when-${value}`} value={value} onChange={handleOnChangeCheckbox} />
+                  <label htmlFor={`when-${value}`}>
+                    {value}
+                  </label>
+                </div>
+              )
+            })
+          }
         </div>
         
         <div className="App-form-group">
-          <label>Ingredients</label>
-          {ingredientState.map((value, key) => {
+          <label className="App-form-group__label-title">Ingredients</label>
+          {formState.ingredients.map((value, key) => {
             const newKey = key + 1;
-            const showDelete = (key > 0) || (key >= 0 && ingredientState.length > 1);
+            const showDelete = (key > 0) || (key >= 0 && formState.ingredients.length > 1);
 
             return (
               <div className="App-form-group--inline" key={key}>
                 <input type="text" placeholder={`Enter ingredient ${newKey}`} value={value} data-key={key} onChange={handleOnChangeIngredient} />
-                {showDelete && <button className="App-btn App-btn--small App-recipe-add__ingredient-btn-delete" data-key={key} data-ingredients={ingredientState} onClick={handleDeleteIngredient}>Delete Ingredient +</button>}
-                {(ingredientState.length-1) === key && <button className="App-btn App-btn--small App-recipe-add__ingredient-btn-add" onClick={handleAddIngredient(key, value, true)}>Add Another Ingredient +</button>}
+                {showDelete && <button className="App-btn App-btn--small App-recipe-add__ingredient-btn-delete" data-key={key} data-ingredients={formState.ingredients} onClick={handleDeleteIngredient}>Delete Ingredient +</button>}
+                {(formState.ingredients.length-1) === key && <button className="App-btn App-btn--small App-recipe-add__ingredient-btn-add" onClick={handleAddIngredient(key, value, true)}>Add Another Ingredient +</button>}
               </div>
             )
           })}
