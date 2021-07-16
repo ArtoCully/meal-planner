@@ -216,10 +216,12 @@
   font-size: 18px;
   font-weight: bold;
   margin: 0;
+  cursor: pointer;
 }
 
 label.App-form-group__label-title {
   margin: 0 0 15px 0;
+  cursor: default;
 }
 
 .App-form-group--inline {
