@@ -157,16 +157,16 @@ export default function AddRecipe() {
 
             return (
               <div className="App-form-group--inline" key={key}>
-                <input type="text" placeholder={`Enter ingredient ${newKey}`} value={value} data-key={key} onChange={handleOnChangeIngredient} />
-                {showDelete && <button className="App-btn App-btn--small App-recipe-add__ingredient-btn-delete" data-key={key} data-ingredients={formState.ingredients} onClick={handleDeleteIngredient}>Delete Ingredient +</button>}
-                {(formState.ingredients.length-1) === key && <button className="App-btn App-btn--small App-recipe-add__ingredient-btn-add" onClick={handleAddIngredient(key, value, true)}>Add Another Ingredient +</button>}
+                <input className="App-recipe-add__ingredient" type="text" placeholder={`Enter ingredient ${newKey}`} value={value} data-key={key} onChange={handleOnChangeIngredient} />
+                {showDelete && <button className="App-btn App-btn--small App-btn--delete App-recipe-add__ingredient-btn" data-key={key} data-ingredients={formState.ingredients} onClick={handleDeleteIngredient}>-</button>}
+                {(formState.ingredients.length-1) === key && <button className="App-btn App-btn--small App-btn--secondary App-recipe-add__ingredient-btn" onClick={handleAddIngredient(key, value, true)}>+</button>}
               </div>
             )
           })}
         </div>
 
         <button
-          className="App-btn"
+          className="App-btn App-btn--primary App-btn__add-recipe"
           onClick={handleAddRecipe}>
             Add
         </button>
