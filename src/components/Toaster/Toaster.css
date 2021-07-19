@@ -1,0 +1,19 @@
+.App-toaster {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--global-colour-slate);
+}
+
+.App-toaster--success {
+  background-color: var(--global-success);
+}
+
+.App-toaster--error {
+  background-color: var(--global-alert);
+}
+
+.App-toaster-information {
+  background-color: var(--global-information);
+}

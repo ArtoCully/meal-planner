@@ -37,9 +37,10 @@ export async function createRecipe(params: IRecipe) {
     const result = await instance.post('/recipes', params);
 
     if (result) {
-      console.log('result', result);
+      return result;
     }
   } catch (e) {
     console.log('create recipe error');
+    return e;
   }
 }

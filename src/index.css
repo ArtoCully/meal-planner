@@ -3,6 +3,10 @@
   --global-primary: #ff9c00;
   --global-secondary: #00c4ff;
   --global-alert: #ff2f00;
+  --global-information: #00d9ff;
+  --global-success: #00ff73;
+
+  --global-colour-slate: #333333;
 }
 
 *,
