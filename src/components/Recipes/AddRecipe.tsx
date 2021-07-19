@@ -115,7 +115,6 @@ export default function AddRecipe() {
   }
 
   const handleOnChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const name = event.target.name;
     const value = event.target.value;
     const checked = event.target.checked;
 
@@ -158,7 +157,6 @@ export default function AddRecipe() {
           <label className="App-form-group__label-title">When</label>
           {
             Object.keys(whenState).map((value: string, index: number) => {
-              const isChecked: boolean = whenState[value];
               return (
                 <div className="App-form-group--inline" key={index}>
                   <input type="checkbox" id={`App-recipe-add__when--${value}`} name="when" value={value} onChange={handleOnChangeCheckbox} />
