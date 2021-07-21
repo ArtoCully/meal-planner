@@ -93,13 +93,14 @@ export default function AddRecipe() {
         });
       }
       if (formResponse.status >= 400 && formResponse.status < 500) {
+        const message = formResponse.data.message ? formResponse.data.message : 'Something went wrong try again';
         setFormStatus({
           type: IStatusType.error,
-          message: 'Something went wrong',
+          message,
         })
       }
     }
-    console.log('formResponse', formResponse);
+    console.log('formResponse', formResponse, formResponse.data.message);
   };
 
   const handleOnChangeInputText = (event: React.ChangeEvent<HTMLInputElement>) => {

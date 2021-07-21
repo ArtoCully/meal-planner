@@ -34,13 +34,13 @@ export async function fetchRecipes() {
 
 export async function createRecipe(params: IRecipe) {
   try {
-    const result = await instance.post('/recipes', params);
-
-    if (result) {
-      return result;
-    }
+    const result = await instance.post('/recipes', params)
+      .catch((err) => {
+        throw err;
+      });
+    return result;
   } catch (e) {
-    console.log('create recipe error');
-    return e;
+    console.log('create recipe error', e);
+    return e.response
   }
 }
