@@ -1,20 +1,25 @@
 import React from 'react';
 import Toaster, { IToaster } from '../Toaster/Toaster';
-import { createRecipe } from '../../services/api';
 import { IRecipe } from '../../models/recipe';
+import { createRecipe } from '../../services/api';
 import { IStatusType } from '../../models/status';
 
+interface IFormObject extends IRecipe {
+  whenState: any;
+}
+
 export default function AddRecipe() {
-  const formObject: IRecipe = {
+  const formObject: IFormObject = {
     title: '',
     when: [],
     ingredients: [''],
+    whenState: {
+      'breakfast': false,
+      'lunch': false,
+      'dinner': false
+    }
   }
-  const whenState: any = {
-    'breakfast': false,
-    'lunch': false,
-    'dinner': false
-  }
+
   const formStatusObject: IToaster = {
     type: undefined,
     message: undefined,
@@ -23,13 +28,7 @@ export default function AddRecipe() {
   const [formState, setFormState] = React.useState(formObject);
   const [formStatus, setFormStatus] = React.useState(formStatusObject);
 
-  React.useEffect(() => {
-    // (async () => {
-    //   console.log('ingredientState', ingredientState);
-    //   const recipes = await fetchRecipes();
-    //   console.log('recipes', recipes);
-    // })();
-  }, [
+  React.useEffect(() => {}, [
     formState,
   ]);
 
@@ -80,10 +79,23 @@ export default function AddRecipe() {
     handleAddIngredient(numKey, value)();
   }
 
+  const filterWhenArray = (whenState: any) => {
+    const when = Object.keys(whenState).filter((value) => {
+      if (whenState[value] === true) {
+        return value;
+      }
+      return false;
+    });
+    return when;
+  }
+
   const handleAddRecipe = async (event: React.SyntheticEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
-    const formResponse = await createRecipe(formState);
+    const { whenState, ...otherFormState } = formState;
+    const when = filterWhenArray(whenState);
+    const params = { ...otherFormState, when };
+    const formResponse = await createRecipe(params);
 
     if (formResponse) {
       if (formResponse.status === 200) {
@@ -91,6 +103,8 @@ export default function AddRecipe() {
           type: IStatusType.success,
           message: 'Successfully saved',
         });
+
+        setFormState(formObject);
       }
       if (formResponse.status >= 400 && formResponse.status < 500) {
         const message = formResponse.data.message ? formResponse.data.message : 'Something went wrong try again';
@@ -100,7 +114,7 @@ export default function AddRecipe() {
         })
       }
     }
-    console.log('formResponse', formResponse, formResponse.data.message);
+    console.log('formResponse', formResponse);
   };
 
   const handleOnChangeInputText = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -115,29 +129,19 @@ export default function AddRecipe() {
     setFormState(data);
   }
 
-  const handleOnChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChangeCheckbox = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     const checked = event.target.checked;
 
-    let when: string[] = formState.when.length > 0 ? formState.when : [];
-
-    if (checked) {
-      if (!when.find((val) => val === value)) {
-        when.push(value);
-        const formData = {
-          ...formState,
-          when
-        }
-        setFormState(formData);
+    const formData = {
+      ...formState,
+      whenState: {
+        ...formState.whenState,
+        [value]: checked
       }
-    } else {
-      const updatedWhen = when.filter((val) => val !== value);
-      const formData = {
-        ...formState,
-        when: updatedWhen
-      }
-      setFormState(formData);
     }
+
+    setFormState(formData);
   }
 
   return (
@@ -151,16 +155,16 @@ export default function AddRecipe() {
         }
         <div className="App-form-group">
           <label className="App-form-group__label-title">Title</label>
-          <input type="text" id="App-recipe-add__title" name="title" onChange={handleOnChangeInputText} />
+          <input type="text" id="App-recipe-add__title" name="title" onChange={handleOnChangeInputText} value={formState.title}/>
         </div>
 
         <div className="App-form-group">
           <label className="App-form-group__label-title">When</label>
           {
-            Object.keys(whenState).map((value: string, index: number) => {
+            Object.keys(formState.whenState).map((value: string, index: number) => {
               return (
                 <div className="App-form-group--inline" key={index}>
-                  <input type="checkbox" id={`App-recipe-add__when--${value}`} name="when" value={value} onChange={handleOnChangeCheckbox} />
+                  <input type="checkbox" id={`App-recipe-add__when--${value}`} name="when" value={value} onChange={handleOnChangeCheckbox} checked={formState.whenState[value]} />
                   <label htmlFor={`App-recipe-add__when--${value}`}>
                     {value}
                   </label>
