@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import WeeklyMenu from './components/WeeklyMenu/WeeklyMenu';
 import AddRecipe from './components/Recipes/AddRecipe';
+import ListRecipe from './components/Recipes/ListRecipe';
 
 export default function Router() {
   return (
@@ -23,6 +24,9 @@ export default function Router() {
       </Route>
       <Route path="/recipes/add">
         <AddRecipe />
+      </Route>
+      <Route path="/recipes/list">
+        <ListRecipe />
       </Route>
     </Switch>
   )

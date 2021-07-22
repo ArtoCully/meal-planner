@@ -23,6 +23,9 @@ function App() {
               <li>
                 <NavLink to="/recipes/add" activeClassName="active">Add Receipe</NavLink>
               </li>
+              <li>
+                <NavLink to="/recipes/list" activeClassName="active">Receipes</NavLink>
+              </li>
             </ul>
         </nav>
 
