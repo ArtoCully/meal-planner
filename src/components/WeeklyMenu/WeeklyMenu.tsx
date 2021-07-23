@@ -1,6 +1,7 @@
 import React from 'react';
 import { weeklyMenu, receipes } from '../../dummyData';
 import { generateWeeklyMenu } from '../../utils/generateMenu';
+import './WeeklyMenu.css';
 
 export default function WeeklyMenu() {
   const [weeklyMenuState, setWeeklyMenuState] = React.useState(weeklyMenu);
@@ -13,7 +14,7 @@ export default function WeeklyMenu() {
   console.log('weeklyMenuState', weeklyMenuState);
 
   return (
-    <section>
+    <section className="App-section App-weekly-menu">
       <h2>Weekly Menu</h2>
       <button
         className="App-btn App-btn__generate-receipe"

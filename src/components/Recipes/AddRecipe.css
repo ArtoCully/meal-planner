@@ -1,0 +1,23 @@
+/** Add Recipe **/
+.App-recipe-add__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.App-recipe-add__ingredient {
+  width: 60vw;
+}
+
+.App-recipe-add__ingredient-btn {
+  width: 10vw;
+}
+
+#App-recipe-add__title {
+  width: 60vw;
+}
+
+.App-btn__add-recipe {
+  width: 100%;
+}

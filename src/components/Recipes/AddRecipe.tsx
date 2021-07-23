@@ -3,7 +3,7 @@ import Toaster, { IToaster } from '../Toaster/Toaster';
 import { IRecipe } from '../../models/recipe';
 import { createRecipe } from '../../services/api';
 import { IStatusType } from '../../models/status';
-
+import './AddRecipe.css';
 interface IFormObject extends IRecipe {
   whenState: any;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { fetchRecipes } from '../../services/api';
 import { IRecipe } from '../../models/recipe';
+import './ListRecipe.css';
 
 export default function ListRecipe() {
   const recipeData: IRecipe[] = [];

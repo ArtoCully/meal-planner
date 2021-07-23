@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+/** Logo **/
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -13,6 +14,7 @@
   }
 }
 
+/** Header **/
 .App-header {
   background-color: #282c34;
   max-height: 1.5vh;
@@ -50,6 +52,7 @@
   padding: 10px 10px 60px 10px;
 }
 
+/** Button **/
 .App-btn {
   background: var(--global-primary);
   border: none;
@@ -77,16 +80,6 @@
 
 .App-btn--small {
   padding: 0.5em 1.5em;
-}
-
-.App-btn__add-recipe {
-  width: 100%;
-}
-
-.App-btn__generate-receipe {
-  position: relative;
-  z-index: 9999;
-  margin-top: -10px;
 }
 
 /** Top Nav **/
@@ -125,115 +118,7 @@
   color: #a06800;
 }
 
-/* Table Styles */
-.App-table {
-  width: 100%;
-  padding: 25px 10px;
-}
-
-.App-table th[scope="row"] {
-  text-transform: capitalize;
-  text-align: right;
-  padding-right: 0.5rem;
-}
-
-.App-table th[scope="col"] {
-  text-transform: capitalize;
-  text-align: left;
-  padding-bottom: 0.5rem;
-}
-
-.App-table td {
-  text-align: left;
-  padding: 0.3rem;
-}
-
-@media (max-width: 530px) {
-  .App-table {
-    overflow-y: hidden;
-  }
-
-  table.App-table,
-  .App-table thead,
-  .App-table td,
-  .App-table th,
-  .App-table tr {
-    display: block;
-  }
-
-  .App-table thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-
-  .App-table th[scope="row"] {
-    text-align: left;
-    padding-left: 118px;
-  }
-
-  .App-table tr {
-    margin: 0 0 20px 0;
-    padding: 0 0 20px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .App-table td {
-    border: none;
-    position: relative;
-    padding-left: 118px;
-    width: 50vw;
-  }
-
-  .App-table td::before {
-    position: absolute;
-    top: 50%;
-    left: 6px;
-    width: 94px;
-    padding-right: 10px;
-    transform: translate(0, -50%);
-    text-align: right;
-  }
-
-  .App-table tbody td::before {
-    font-weight: bold;
-  }
-
-  .App-table tbody td:nth-of-type(1)::before {
-    content: 'Breakfast:';
-  }
-
-  .App-table tbody td:nth-of-type(2)::before {
-    content: 'Lunch:';
-  }
-
-  .App-table tbody td:nth-of-type(3)::before {
-    content: 'Dinner:';
-  }
-}
-
-/** Add Recipe **/
-.App-recipe-add__form {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.App-recipe-add__ingredient {
-  width: 60vw;
-}
-
-.App-recipe-add__ingredient-btn {
-  width: 10vw;
-}
-
-#App-recipe-add__title {
-  width: 60vw;
-}
-
+/** Form **/
 .App-form-group {
   display: flex;
   flex-direction: column;
@@ -270,22 +155,4 @@ label.App-form-group__label-title {
 
 .App-form-group--inline > *:not(:last-child) {
   margin-right: 10px;
-}
-
-/** List Recipe **/
-.App-recipe-list .App-recipe-list__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  text-align: left;
-}
-
-.App-recipe-list .App-recipe-list__container .App-recipe-list__item {
-  padding-bottom: 50px;
-  width: 100%;
-}
-
-.App-recipe-list .App-recipe-list__container .App-recipe-list__item:not(:last-child) {
-  border-bottom: 1px solid var(--global-colour-grey-1);
 }
