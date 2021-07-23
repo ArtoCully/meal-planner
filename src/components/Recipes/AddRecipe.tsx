@@ -3,6 +3,7 @@ import Toaster, { IToaster } from '../Toaster/Toaster';
 import { IRecipe } from '../../models/recipe';
 import { createRecipe } from '../../services/api';
 import { IStatusType } from '../../models/status';
+import FixedNav from '../../components/Navigation/FixedNav';
 import './AddRecipe.css';
 interface IFormObject extends IRecipe {
   whenState: any;
@@ -146,6 +147,7 @@ export default function AddRecipe() {
 
   return (
     <section className="App-section App-recipe-add">
+      <FixedNav />
       <h2>Add Recipe</h2>
       <form className="App-recipe-add__form">
         {formStatus.type && formStatus.message && 

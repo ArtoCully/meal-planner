@@ -1,6 +1,7 @@
 import React from 'react';
 import { weeklyMenu, receipes } from '../../dummyData';
 import { generateWeeklyMenu } from '../../utils/generateMenu';
+import FixedNav from '../../components/Navigation/FixedNav';
 import './WeeklyMenu.css';
 
 export default function WeeklyMenu() {
@@ -15,6 +16,7 @@ export default function WeeklyMenu() {
 
   return (
     <section className="App-section App-weekly-menu">
+      <FixedNav />
       <h2>Weekly Menu</h2>
       <button
         className="App-btn App-btn__generate-receipe"

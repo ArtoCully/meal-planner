@@ -1,6 +1,7 @@
 import React from 'react';
 import { fetchRecipes } from '../../services/api';
 import { IRecipe } from '../../models/recipe';
+import FixedNav from '../../components/Navigation/FixedNav';
 import './ListRecipe.css';
 
 export default function ListRecipe() {
@@ -19,6 +20,7 @@ export default function ListRecipe() {
 
   return (
     <section className="App-section App-recipe-list">
+      <FixedNav />
       <h2>List Recipes</h2>
       <ul className="App-list App-recipe-list__container">
         {listRecipeState.map((recipe, index) => {

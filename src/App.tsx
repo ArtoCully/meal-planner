@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter,
-  NavLink,
-} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import Routes from './Routes';
@@ -15,20 +12,6 @@ function App() {
       </header>
 
       <BrowserRouter>
-        <nav className="App-fixed-nav">
-            <ul>
-              <li>
-                <NavLink to="/menu/weekly" activeClassName="active">Weekly Menu</NavLink>
-              </li>
-              <li>
-                <NavLink to="/recipes/add" activeClassName="active">Add Receipe</NavLink>
-              </li>
-              <li>
-                <NavLink to="/recipes/list" activeClassName="active">Receipes</NavLink>
-              </li>
-            </ul>
-        </nav>
-
         <Routes />
       </BrowserRouter>
     </div>

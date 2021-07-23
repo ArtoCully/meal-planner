@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import DividerWithText from '../Divider/DividerWithText';
 import './Login.css';
 
 export default function Login() {
@@ -17,7 +18,7 @@ export default function Login() {
         <div className="App-form-group">
           <button className="App-btn App-btn--primary App-btn__login">Login</button>
         </div>
-        <hr />
+        <DividerWithText text="OR" lineColour="#333" textColour="#333" />
         <div className="App-form-group">
           <button className="App-btn App-btn--secondary App-btn__signup">Signup</button>
         </div>

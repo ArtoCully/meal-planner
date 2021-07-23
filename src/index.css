@@ -1,4 +1,5 @@
 :root {
+  --global-black: #000000;
   --global-navigation-bg: orange;
   --global-primary: #ff9c00;
   --global-secondary: #00c4ff;
@@ -7,6 +8,7 @@
   --global-success: #00ff73;
   --global-colour-grey-1: #c5c5c5;
   --global-colour-slate: #333333;
+  --global-colour-orange: orange;
 }
 
 *,
@@ -27,4 +29,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a {
+  color: var(--global-colour-orange);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
