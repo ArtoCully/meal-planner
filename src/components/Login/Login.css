@@ -1,0 +1,22 @@
+.App-section.App-login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.App-login .App-form-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-login input,
+.App-login .App-btn__login {
+  min-width: 170px;
+}
+
+.App-fixed-nav {
+  display: none;
+}

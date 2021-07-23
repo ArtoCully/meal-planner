@@ -15,7 +15,7 @@ function App() {
       </header>
 
       <BrowserRouter>
-        <nav className="App-top-nav">
+        <nav className="App-fixed-nav">
             <ul>
               <li>
                 <NavLink to="/menu/weekly" activeClassName="active">Weekly Menu</NavLink>

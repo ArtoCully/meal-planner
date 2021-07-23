@@ -83,7 +83,7 @@
 }
 
 /** Top Nav **/
-.App-top-nav {
+.App-fixed-nav {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -94,7 +94,7 @@
   border-top: 1px solid #a06800;
 }
 
-.App-top-nav ul {
+.App-fixed-nav ul {
   list-style: none;
   padding: 0;
   margin: 15px 0;
@@ -103,18 +103,18 @@
   grid-gap: 10px;
 }
 
-.App-top-nav ul li:not(:last-child) {
+.App-fixed-nav ul li:not(:last-child) {
   border-right: 1px solid #a06800;
 }
 
-.App-top-nav a {
+.App-fixed-nav a {
   text-transform: uppercase;
   text-decoration: none;
   color: #ffffff;
   font-weight: bold;
 }
 
-.App-top-nav a.active {
+.App-fixed-nav a.active {
   color: #a06800;
 }
 
@@ -126,8 +126,6 @@
   align-items: flex-start;
   margin-bottom: 20px;
   width: 100%;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 25px;
 }
 
 .App-form-group input {

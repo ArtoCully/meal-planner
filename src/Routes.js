@@ -7,10 +7,14 @@ import {
 import WeeklyMenu from './components/WeeklyMenu/WeeklyMenu';
 import AddRecipe from './components/Recipes/AddRecipe';
 import ListRecipe from './components/Recipes/ListRecipe';
+import Login from './components/Login/Login';
 
 export default function Router() {
   return (
     <Switch>
+      <Route path="/login">
+        <Login />
+      </Route>
       <Route
         exact
         path="/"

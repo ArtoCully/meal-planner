@@ -21,3 +21,8 @@
 .App-btn__add-recipe {
   width: 100%;
 }
+
+.App-recipe-add .App-form-group {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 25px;
+}
