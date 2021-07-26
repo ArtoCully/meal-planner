@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { IRecipe } from '../models/recipe';
-
+const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL,
 });
 
 instance.interceptors.request.use(request => {
