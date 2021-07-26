@@ -2,17 +2,29 @@ import React from 'react';
 import { weeklyMenu, receipes } from '../../dummyData';
 import { generateWeeklyMenu } from '../../utils/generateMenu';
 import FixedNav from '../../components/Navigation/FixedNav';
+import { fetchRecipes } from '../../services/api';
+import { IRecipe } from '../../models/recipe';
 import './WeeklyMenu.css';
 
 export default function WeeklyMenu() {
+  // NOTE eventually only update to
+  // only fetch users recipes
+  const recipeData: IRecipe[] = [];
+  const [listRecipeState, setRecipeState] = React.useState(recipeData);
   const [weeklyMenuState, setWeeklyMenuState] = React.useState(weeklyMenu);
 
-  const handleGenerateWeeklyMenu = () => {
-    const menu = generateWeeklyMenu(receipes);
-    setWeeklyMenuState(menu);
+  const handleGenerateWeeklyMenu = async () => {
+    const recipeResponse = await fetchRecipes();
+    if (recipeResponse && recipeResponse.status === 200) {
+      const recipeList = recipeResponse.data || receipes;
+      setRecipeState(recipeList);
+      const menu = generateWeeklyMenu(recipeList);
+      setWeeklyMenuState(menu);
+    }
   }
 
   console.log('weeklyMenuState', weeklyMenuState);
+  console.log('listRecipeState', listRecipeState);
 
   return (
     <section className="App-section App-weekly-menu">
