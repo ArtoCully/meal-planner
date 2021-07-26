@@ -5,9 +5,10 @@
   left: 0;
   width: 100%;
   background: var(--global-navigation-bg);
-  color: white;
+  color: var(--global-colour-orange-2);
   z-index: 999;
-  border-top: 1px solid #a06800;
+  border-top: 1px solid var(--global-colour-grey-2);
+  box-shadow: 0px 2px 4px rgb(0 0 0 / 27%);
 }
 
 .App-fixed-nav ul {
@@ -20,16 +21,16 @@
 }
 
 .App-fixed-nav ul li:not(:last-child) {
-  border-right: 1px solid #a06800;
+  border-right: 1px solid var(--global-colour-grey-2);
 }
 
 .App-fixed-nav a {
   text-transform: uppercase;
   text-decoration: none;
-  color: #ffffff;
+  color: var(--global-colour-orange-2);
   font-weight: bold;
 }
 
 .App-fixed-nav a.active {
-  color: #a06800;
+  color: var(--global-colour-orange-1);
 }

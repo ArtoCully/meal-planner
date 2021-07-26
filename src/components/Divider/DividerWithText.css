@@ -5,11 +5,11 @@
 
 .App-separator .App-separator__title {
   padding: 0 2rem;
-  color: var(--global-black);
+  color: var(--global-colour-black);
 }
 
 .App-separator .App-separator__line {
   flex: 1;
   height: 3px;
-  background-color: var(--global-black);
+  background-color: var(--global-colour-black);
 }

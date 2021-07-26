@@ -1,14 +1,21 @@
 :root {
-  --global-black: #000000;
-  --global-navigation-bg: orange;
+  --global-navigation-bg: #ffffff;
+
   --global-primary: #ff9c00;
   --global-secondary: #00c4ff;
+
   --global-alert: #ff2f00;
   --global-information: #00d9ff;
   --global-success: #00ff73;
+
+  --global-colour-black: #000000;
+  --global-colour-white: #ffffff;
   --global-colour-grey-1: #c5c5c5;
+  --global-colour-grey-2: #eeeeee;
   --global-colour-slate: #333333;
-  --global-colour-orange: orange;
+  --global-colour-orange-1: #ffa500;
+  --global-colour-orange-2: #ff7b00;
+  --global-colour-orange-3: #a06800;
 }
 
 *,
