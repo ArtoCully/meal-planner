@@ -20,7 +20,7 @@ export default function Login() {
         </div>
         <DividerWithText text="OR" lineColour="#333" textColour="#333" />
         <div className="App-form-group">
-          <button className="App-btn App-btn--secondary App-btn__signup">Signup</button>
+          <Link to="/signup" className="App-btn App-btn--secondary App-btn__signup">Signup</Link>
         </div>
         <div className="App-form-group">
           <Link to="/">Continue as guest</Link>

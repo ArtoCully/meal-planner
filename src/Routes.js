@@ -8,12 +8,16 @@ import WeeklyMenu from './components/WeeklyMenu/WeeklyMenu';
 import AddRecipe from './components/Recipes/AddRecipe';
 import ListRecipe from './components/Recipes/ListRecipe';
 import Login from './components/Login/Login';
+import Signup from './components/Signup/Signup';
 
 export default function Router() {
   return (
     <Switch>
       <Route path="/login">
         <Login />
+      </Route>
+      <Route path="/signup">
+        <Signup />
       </Route>
       <Route
         exact
