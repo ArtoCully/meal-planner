@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { IRecipe } from '../models/recipe';
 import { IUser, ILogin } from '../models/user';
-const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
-const instance = axios.create({
+
+export const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+export const instance = axios.create({
   baseURL,
 });
 

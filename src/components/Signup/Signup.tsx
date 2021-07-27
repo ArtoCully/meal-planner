@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCookies } from 'react-cookie';
+import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom';
 import { IUser } from '../../models/user';
 import { IStatusType } from '../../models/status';
@@ -23,7 +23,6 @@ export default function Signup() {
 
   const [formState, setFormState] = React.useState(formData);
   const [formStatus, setFormStatus] = React.useState(formStatusObject);
-  const [cookies, setCookie] = useCookies(['app_tok', 'app_user']);
   const history = useHistory();
 
   const handleFormSubmit = async (event: React.SyntheticEvent) => {
@@ -63,8 +62,8 @@ export default function Signup() {
         console.log('autehnticateResponse', authenticateResponse);
         if (authenticateResponse && authenticateResponse.status === 200) {
           const { token, ...userData } = authenticateResponse.data;
-          await setCookie('app_tok', token, { path: '/' });
-          await setCookie('app_user', JSON.stringify(userData), { path: '/' });
+          await Cookies.set('app_tok', token, { expires: 7 })
+          await Cookies.set('app_user', JSON.stringify(userData), { expires: 7 })
 
           // TODO: Refactor
           // on success display
@@ -82,7 +81,7 @@ export default function Signup() {
             history.push('/');
           }, 400);
           
-          console.log('cookies', cookies.app_tok, cookies.app_user);
+          // console.log('cookies', cookies.app_tok, cookies.app_user);
         }
       }
 
