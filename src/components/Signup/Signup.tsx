@@ -1,9 +1,9 @@
 import React from 'react';
-import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom';
 import { IUser } from '../../models/user';
 import { IStatusType } from '../../models/status';
-import { authenticate, createUser } from '../../services/api';
+import { login } from '../../services/authenticate';
+import { createUser } from '../../services/api';
 import Toaster, { IToaster } from '../Toaster/Toaster';
 import './Signup.css';
 
@@ -50,20 +50,13 @@ export default function Signup() {
 
     if (formResponse) {
       if (formResponse.status === 200) {
-        const authenticateResponse = await authenticate({
-          username: otherFormState.username,
-          password: otherFormState.password,
-        });
-
         // TODO: Refactor code
         // Move authentication to a
         // wrapper component that can
         // be reused on other components
-        console.log('autehnticateResponse', authenticateResponse);
+        const authenticateResponse = await login(formState);
         if (authenticateResponse && authenticateResponse.status === 200) {
-          const { token, ...userData } = authenticateResponse.data;
-          await Cookies.set('app_tok', token, { expires: 7 })
-          await Cookies.set('app_user', JSON.stringify(userData), { expires: 7 })
+          console.log('authenticateResponse', authenticateResponse);
 
           // TODO: Refactor
           // on success display
@@ -80,8 +73,6 @@ export default function Signup() {
           setTimeout(() => {
             history.push('/');
           }, 400);
-          
-          // console.log('cookies', cookies.app_tok, cookies.app_user);
         }
       }
 
