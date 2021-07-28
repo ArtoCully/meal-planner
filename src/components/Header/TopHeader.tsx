@@ -6,6 +6,10 @@ import './TopHeader.css';
 
 export default function TopHeader() {
   const history = useHistory();
+  // TODO: currentUser prop should
+  // be on the global state decide
+  // how to do this then implement
+  // could be redux/rxjs/contextprovider
   const currentUser = getCurrentUser();
   console.log('currentUser', currentUser);
 
