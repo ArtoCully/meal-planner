@@ -2,10 +2,12 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { login } from '../../services/authenticate';
 import DividerWithText from '../Divider/DividerWithText';
+import useUserContext from '../../hooks/useUserContext';
 import { ILogin } from '../../models/user';
 import './Login.css';
 
 export default function Login() {
+  const { setCurrentUser } = useUserContext();
   const history = useHistory();
   const formObject: ILogin = {
     username: '',
@@ -31,6 +33,7 @@ export default function Login() {
     const response = await login(formState);
     if (response && response.status === 200) {
       console.log('response', response);
+      setCurrentUser(response.data);
       history.push('/');
     }
   };

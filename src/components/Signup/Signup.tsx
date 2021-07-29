@@ -4,6 +4,7 @@ import { IUser } from '../../models/user';
 import { IStatusType } from '../../models/status';
 import { login } from '../../services/authenticate';
 import { createUser } from '../../services/api';
+import useUserContext from '../../hooks/useUserContext';
 import Toaster, { IToaster } from '../Toaster/Toaster';
 import './Signup.css';
 
@@ -24,6 +25,7 @@ export default function Signup() {
   const [formState, setFormState] = React.useState(formData);
   const [formStatus, setFormStatus] = React.useState(formStatusObject);
   const history = useHistory();
+  const { setCurrentUser } = useUserContext();
 
   const handleFormSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -57,6 +59,8 @@ export default function Signup() {
         const authenticateResponse = await login(formState);
         if (authenticateResponse && authenticateResponse.status === 200) {
           console.log('authenticateResponse', authenticateResponse);
+
+          setCurrentUser(authenticateResponse.data);
 
           // TODO: Refactor
           // on success display
