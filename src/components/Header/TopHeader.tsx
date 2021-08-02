@@ -26,6 +26,7 @@ export default function TopHeader() {
   return (
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
+      {currentUser && <span>{currentUser.username}</span>}
       {currentUser && <button className="App-logout" onClick={handleLogout}>Logout</button>}
     </header>
   )

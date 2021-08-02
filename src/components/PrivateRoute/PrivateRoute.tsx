@@ -1,22 +1,25 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { getCurrentUser } from '../../services/authenticate';
+import useUserContext from '../../hooks/useUserContext';
 
 interface IPrivateRouteProps {
   component?: React.ReactNode,
 }
 
-export const PrivateRoute: React.FC<IPrivateRouteProps> = ({ component, ...rest }) => (
-    <Route {...rest} render={props => {
-        const currentUser = getCurrentUser();
-        const Component = component as any;
+export const PrivateRoute: React.FC<IPrivateRouteProps> = ({ component, ...rest }) => {
+    const { currentUser } = useUserContext();
 
-        if (!currentUser) {
-            // not logged in so redirect to login page with the return url
-            return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
-        }
+    return (
+        <Route {...rest} render={props => {
+            const Component = component as any;
 
-        // authorised so return component
-        return <Component {...props} />
-    }} />
-)
+            if (!currentUser) {
+                // not logged in so redirect to login page with the return url
+                return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+            }
+
+            // authorised so return component
+            return <Component {...props} />
+        }} />
+    )
+}
