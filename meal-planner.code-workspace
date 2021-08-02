@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../meal-planner-node-mongodb-api"
+		}
+	]
+}
