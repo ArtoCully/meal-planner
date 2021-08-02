@@ -4,6 +4,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import WeeklyMenu from './components/WeeklyMenu/WeeklyMenu';
 import AddRecipe from './components/Recipes/AddRecipe';
 import ListRecipe from './components/Recipes/ListRecipe';
@@ -30,9 +31,7 @@ export default function Router() {
       <Route path="/menu/weekly">
         <WeeklyMenu />
       </Route>
-      <Route path="/recipes/add">
-        <AddRecipe />
-      </Route>
+      <PrivateRoute path="/recipes/add" component={AddRecipe} />
       <Route path="/recipes/list">
         <ListRecipe />
       </Route>

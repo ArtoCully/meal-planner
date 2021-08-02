@@ -6,7 +6,7 @@ interface IPrivateRouteProps {
   component?: React.ReactNode,
 }
 
-export const PrivateRoute: React.FC<IPrivateRouteProps> = ({ component, ...rest }) => {
+const PrivateRoute: React.FC<IPrivateRouteProps> = ({ component, ...rest }) => {
     const { currentUser } = useUserContext();
 
     return (
@@ -23,3 +23,5 @@ export const PrivateRoute: React.FC<IPrivateRouteProps> = ({ component, ...rest 
         }} />
     )
 }
+
+export default PrivateRoute;
