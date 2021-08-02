@@ -1,20 +1,27 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { login } from '../../services/authenticate';
 import DividerWithText from '../Divider/DividerWithText';
 import useUserContext from '../../hooks/useUserContext';
 import { ILogin } from '../../models/user';
+import { LocationState } from '../../models/history';
 import './Login.css';
 
 export default function Login() {
   const { setCurrentUser } = useUserContext();
   const history = useHistory();
+  const location: LocationState  = useLocation();
   const formObject: ILogin = {
     username: '',
     password: '',
   }
 
   const [formState, setFormState] = React.useState(formObject);
+
+  React.useEffect(() => {
+    console.log('history', history);
+    console.log('location', location);
+  },);
 
   const handleSetInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -33,8 +40,20 @@ export default function Login() {
     const response = await login(formState);
     if (response && response.status === 200) {
       console.log('response', response);
+      const pathname = location &&
+        location.state &&
+        location.state.from &&
+        location.state.from.pathname;
+
       setCurrentUser(response.data);
-      history.push('/');
+
+      console.log('pathname', pathname);
+
+      if (pathname) {
+        history.push(pathname);
+      } else {
+        history.push('/');
+      }
     }
   };
 
