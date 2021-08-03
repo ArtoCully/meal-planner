@@ -1,6 +1,7 @@
 /** Logo **/
 .App-logo {
   max-width: 69px;
+  width: 69px;
   height: auto;
   pointer-events: none;
 }
@@ -17,22 +18,14 @@
   border: 1px solid #EEEEEE;
   max-height: 50px;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--global-colour-black);
   overflow: hidden;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  justify-items: center;
-}
-
-.App-header .App-logo {
-  grid-column-start: 2;
-}
-
-.App-header .App-logout {
-  grid-column-start: 3;
+  justify-content: space-between;
+  display: flex;
+  padding: 10px;
 }

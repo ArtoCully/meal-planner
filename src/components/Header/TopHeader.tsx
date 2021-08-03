@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { logout } from '../../services/authenticate';
 import useUserContext from '../../hooks/useUserContext';
 import logo from '../../logo.svg';
@@ -25,7 +25,7 @@ export default function TopHeader() {
 
   return (
     <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
+      <Link to="/" className="App-logo" ><img src={logo} alt="logo" /></Link>
       {currentUser && <span>{currentUser.username}</span>}
       {currentUser && <button className="App-logout" onClick={handleLogout}>Logout</button>}
     </header>
