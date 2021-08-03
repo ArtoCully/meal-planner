@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { IRecipe } from '../models/recipe';
 import { IUser, ILogin } from '../models/user';
 
@@ -35,8 +36,17 @@ export async function fetchRecipes() {
 };
 
 export async function createRecipe(params: IRecipe) {
+  const token = Cookies.get('app_tok');
+  const config = {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  }
+
+  console.log('token', token, config);
+
   try {
-    const result = await instance.post('/recipes', params)
+    const result = await instance.post('/recipes', params, config)
       .catch((err) => {
         throw err;
       });
