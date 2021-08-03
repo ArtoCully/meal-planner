@@ -5,6 +5,7 @@ export enum ITimeOfMeal {
 }
 
 export interface IRecipe {
+  _id?: string;
   title: string;
   when: string[];
   ingredients: string[];

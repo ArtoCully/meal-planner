@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchRecipes } from '../../services/api';
+import { fetchRecipes, deleteRecipe } from '../../services/api';
 import { IRecipe } from '../../models/recipe';
 import FixedNav from '../../components/Navigation/FixedNav';
 import './ListRecipe.css';
@@ -18,14 +18,27 @@ export default function ListRecipe() {
     })();
   }, []);
 
+  const handleDeleteRecipe = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    const id = event && event.currentTarget && event.currentTarget.dataset && event.currentTarget.dataset.id;
+    const response = await deleteRecipe(id);
+
+    if (response && response.status === 200) {
+      console.log('recipe deleted', response);
+      const newListRecipeState = listRecipeState.filter((f) => f._id !== id);
+      setRecipeState(newListRecipeState);
+    }
+  };
+
   return (
     <section className="App-section App-recipe-list">
       <FixedNav />
       <h2>List Recipes</h2>
       <ul className="App-list App-recipe-list__container">
         {listRecipeState.map((recipe, index) => {
+          console.log(recipe);
           return (
-            <li className="App-recipe-list__item" key={index}>
+            <li className="App-recipe-list__item" key={recipe._id}>
               <h3>{recipe.title}</h3>
               <h4>When to eat</h4>
               <ul className="App-list App-recipe-list__when">
@@ -44,6 +57,7 @@ export default function ListRecipe() {
                   </li>
                 ))}
               </ul>
+              <button data-id={recipe._id} onClick={handleDeleteRecipe}>Delete</button>
             </li>
           )
         })}

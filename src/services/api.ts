@@ -57,6 +57,27 @@ export async function createRecipe(params: IRecipe) {
   }
 }
 
+export async function deleteRecipe(id?: string) {
+  const token = Cookies.get('app_tok');
+  const headers = {
+    'Authorization': `Bearer ${token}`
+  }
+
+  console.log('token', token, headers);
+  // const data = { id };
+
+  try {
+    const result = await instance.delete(`/recipes/${id}`, { headers })
+      .catch((err) => {
+        throw err;
+      });
+    return result;
+  } catch (e) {
+    console.log('delete recipe error', e);
+    return e.response
+  }
+}
+
 export async function createUser(params: IUser) {
   try {
     const result = await instance.post('/users/register', params)
