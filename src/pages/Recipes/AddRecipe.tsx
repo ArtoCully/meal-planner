@@ -1,9 +1,10 @@
 import React from 'react';
-import Toaster, { IToaster } from 'src/components/Toaster/Toaster';
+import { Toaster } from 'src/components/Toaster';
+import { IToaster } from 'src/components/Toaster/models';
 import { IRecipe } from 'src/models/recipe';
 import { createRecipe } from 'src/services/api';
 import { IStatusType } from 'src/models/status';
-import FixedNav from 'src/components/Navigation/FixedNav';
+import { FixedNav } from 'src/components/Navigation';
 import './AddRecipe.css';
 interface IFormObject extends IRecipe {
   whenState: any;

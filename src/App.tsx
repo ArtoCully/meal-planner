@@ -1,5 +1,5 @@
 import React from 'react';
-import TopHeader from './components/Header/TopHeader';
+import { TopHeader } from './components/Header';
 import Routes from './Routes';
 import { getCurrentUser } from './services/authenticate';
 import UserContextProvider from './context/UserContext';

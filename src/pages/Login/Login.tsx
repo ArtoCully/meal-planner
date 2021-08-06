@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { login } from 'src/services/authenticate';
-import DividerWithText from 'src/components/Divider/DividerWithText';
+import { DividerWithText } from 'src/components/Divider';
 import useUserContext from 'src/hooks/useUserContext';
 import { ILogin } from 'src/models/user';
 import { LocationState } from 'src/models/history';

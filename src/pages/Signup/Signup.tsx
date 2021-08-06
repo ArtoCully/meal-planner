@@ -5,7 +5,8 @@ import { IStatusType } from 'src/models/status';
 import { login } from 'src/services/authenticate';
 import { createUser } from 'src/services/api';
 import useUserContext from 'src/hooks/useUserContext';
-import Toaster, { IToaster } from 'src/components/Toaster/Toaster';
+import { Toaster } from 'src/components/Toaster';
+import { IToaster } from 'src/components/Toaster/models';
 import './Signup.css';
 
 export default function Signup() {

@@ -4,7 +4,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import PrivateRoute from 'src/components/PrivateRoute/PrivateRoute';
+import { PrivateRoute } from 'src/components/PrivateRoute';
 import { WeeklyMenu } from 'src/pages/Menu';
 import { AddRecipe, ListRecipe } from 'src/pages/Recipes';
 import { Login } from 'src/pages/Login';

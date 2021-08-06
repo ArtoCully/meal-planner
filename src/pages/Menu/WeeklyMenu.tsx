@@ -1,7 +1,7 @@
 import React from 'react';
 import { weeklyMenu, receipes } from 'src/dummyData';
 import { generateWeeklyMenu } from 'src/utils/generateMenu';
-import FixedNav from 'src/components/Navigation/FixedNav';
+import { FixedNav } from 'src/components/Navigation';
 import { fetchRecipes } from 'src/services/api';
 import { IRecipe } from 'src/models/recipe';
 import './WeeklyMenu.css';

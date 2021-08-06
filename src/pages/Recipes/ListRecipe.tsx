@@ -1,8 +1,8 @@
 import React from 'react';
 import { fetchRecipes, deleteRecipe } from 'src/services/api';
 import { IRecipe } from 'src/models/recipe';
-import FixedNav from 'src/components/Navigation/FixedNav';
-import LinkButton from 'src/components/LinkButton/LinkButton';
+import { FixedNav } from 'src/components/Navigation';
+import { LinkButton } from 'src/components/LinkButton';
 import useUserContext from 'src/hooks/useUserContext';
 import './ListRecipe.css';
 
