@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const LinkButton = (props: any) => {
+  const { pathname } = useLocation();
+
   const {
     history,
     location,
@@ -14,8 +16,10 @@ const LinkButton = (props: any) => {
     ...rest
   } = props;
 
+  const newTo = to || pathname;
+
   return (
-    <Link to={to}>
+    <Link to={newTo}>
       <button
         {...rest} // `children` is just another prop!
         onClick={(event) => {
