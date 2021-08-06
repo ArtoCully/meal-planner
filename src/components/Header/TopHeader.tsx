@@ -13,8 +13,6 @@ export default function TopHeader() {
   // be on the global state decide
   // how to do this then implement
   // could be redux/rxjs/contextprovider
-  console.log('currentUser Context userContext', currentUser);
-
   const handleLogout = async () => {
     const cleared = await logout();
     if (cleared) {

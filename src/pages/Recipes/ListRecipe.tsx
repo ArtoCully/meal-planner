@@ -27,7 +27,6 @@ export default function ListRecipe() {
     const response = await deleteRecipe(id);
 
     if (response && response.status === 200) {
-      console.log('recipe deleted', response);
       const newListRecipeState = listRecipeState.filter((f) => f._id !== id);
       setRecipeState(newListRecipeState);
     }

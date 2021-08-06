@@ -19,8 +19,7 @@ export default function Login() {
   const [formState, setFormState] = React.useState(formObject);
 
   React.useEffect(() => {
-    console.log('history', history);
-    console.log('location', location);
+
   },);
 
   const handleSetInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,15 +38,12 @@ export default function Login() {
 
     const response = await login(formState);
     if (response && response.status === 200) {
-      console.log('response', response);
       const pathname = location &&
         location.state &&
         location.state.from &&
         location.state.from.pathname;
 
       setCurrentUser(response.data);
-
-      console.log('pathname', pathname);
 
       if (pathname) {
         history.push(pathname);

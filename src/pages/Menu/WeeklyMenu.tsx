@@ -15,8 +15,6 @@ export default function WeeklyMenu() {
   const [listRecipeState, setRecipeState] = React.useState(recipeData);
   const [weeklyMenuState, setWeeklyMenuState] = React.useState(weeklyMenu);
 
-  console.log('currentUser', currentUser);
-
   const handleGenerateWeeklyMenu = async () => {
     const recipeResponse = await fetchRecipesByUserId({ userId: currentUser.id });
     if (recipeResponse && recipeResponse.status === 200) {
@@ -26,9 +24,6 @@ export default function WeeklyMenu() {
       setWeeklyMenuState(menu);
     }
   }
-
-  console.log('weeklyMenuState', weeklyMenuState);
-  console.log('listRecipeState', listRecipeState);
 
   return (
     <section className="App-section App-weekly-menu">

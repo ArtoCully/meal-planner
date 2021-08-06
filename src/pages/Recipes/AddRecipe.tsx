@@ -116,7 +116,6 @@ export default function AddRecipe() {
         })
       }
     }
-    console.log('formResponse', formResponse);
   };
 
   const handleOnChangeInputText = (event: React.ChangeEvent<HTMLInputElement>) => {

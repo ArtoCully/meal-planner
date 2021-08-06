@@ -59,8 +59,6 @@ export async function createRecipe(params: IRecipe) {
     }
   }
 
-  console.log('token', token, config);
-
   try {
     const result = await instance.post('/recipes', params, config)
       .catch((err) => {
@@ -78,9 +76,6 @@ export async function deleteRecipe(id?: string) {
   const headers = {
     'Authorization': `Bearer ${token}`
   }
-
-  console.log('token', token, headers);
-  // const data = { id };
 
   try {
     const result = await instance.delete(`/recipes/${id}`, { headers })
@@ -118,7 +113,7 @@ export async function authenticate(params: ILogin) {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }
-    console.log('paramsToPost', paramsToPost);
+
     const result = await instance.post('/users/authenticate', paramsToPost, config)
       .catch((err) => {
         throw err;

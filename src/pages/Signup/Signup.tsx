@@ -30,7 +30,7 @@ export default function Signup() {
 
   const handleFormSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-    console.log('event', event, formState);
+
     const {
       confirmPassword,
       ...otherFormState
@@ -41,7 +41,6 @@ export default function Signup() {
     // update error on input change
     // First check that password matches
     if (confirmPassword !== otherFormState.password) {
-      console.log('Password does not match');
       setFormStatus({
         type: IStatusType.error,
         message: 'Password does not match',
@@ -59,7 +58,6 @@ export default function Signup() {
         // be reused on other components
         const authenticateResponse = await login(formState);
         if (authenticateResponse && authenticateResponse.status === 200) {
-          console.log('authenticateResponse', authenticateResponse);
 
           setCurrentUser(authenticateResponse.data);
 
