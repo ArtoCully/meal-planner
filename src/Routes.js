@@ -27,9 +27,7 @@ export default function Router() {
         }}
       >
       </Route>
-      <Route path="/menu/weekly">
-        <WeeklyMenu />
-      </Route>
+      <PrivateRoute path="/menu/weekly" component={WeeklyMenu} />
       <PrivateRoute path="/recipes/add" component={AddRecipe} />
       <Route path="/recipes/list">
         <ListRecipe />
