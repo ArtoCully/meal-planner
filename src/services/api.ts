@@ -35,6 +35,22 @@ export async function fetchRecipes() {
   }
 };
 
+export async function fetchRecipesByUserId({ userId }: any) {
+  const token = Cookies.get('app_tok');
+  const config = {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  }
+
+  try {
+    const data = await instance.get(`users/${userId}/recipes`, config);
+    return data;
+  } catch (e) {
+    console.log('fetching user recipes errors', e);
+  }
+};
+
 export async function createRecipe(params: IRecipe) {
   const token = Cookies.get('app_tok');
   const config = {

@@ -2,19 +2,23 @@ import React from 'react';
 import { weeklyMenu, receipes } from 'src/dummyData';
 import { generateWeeklyMenu } from 'src/utils/generateMenu';
 import { FixedNav } from 'src/components/Navigation';
-import { fetchRecipes } from 'src/services/api';
+import { fetchRecipesByUserId } from 'src/services/api';
 import { IRecipe } from 'src/models/recipe';
+import useUserContext from 'src/hooks/useUserContext';
 import './WeeklyMenu.css';
 
 export default function WeeklyMenu() {
+  const { currentUser } = useUserContext();
   // NOTE eventually only update to
   // only fetch users recipes
   const recipeData: IRecipe[] = [];
   const [listRecipeState, setRecipeState] = React.useState(recipeData);
   const [weeklyMenuState, setWeeklyMenuState] = React.useState(weeklyMenu);
 
+  console.log('currentUser', currentUser);
+
   const handleGenerateWeeklyMenu = async () => {
-    const recipeResponse = await fetchRecipes();
+    const recipeResponse = await fetchRecipesByUserId({ userId: currentUser.id });
     if (recipeResponse && recipeResponse.status === 200) {
       const recipeList = recipeResponse.data || receipes;
       setRecipeState(recipeList);
