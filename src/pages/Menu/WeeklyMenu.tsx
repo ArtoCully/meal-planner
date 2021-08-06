@@ -12,7 +12,7 @@ export default function WeeklyMenu() {
   // NOTE eventually only update to
   // only fetch users recipes
   const recipeData: IRecipe[] = [];
-  const [listRecipeState, setRecipeState] = React.useState(recipeData);
+  const [listRecipeState, setRecipeState] = React.useState(recipeData); // eslint-disable-line
   const [weeklyMenuState, setWeeklyMenuState] = React.useState(weeklyMenu);
 
   const handleGenerateWeeklyMenu = async () => {
