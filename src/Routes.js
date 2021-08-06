@@ -4,12 +4,11 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import WeeklyMenu from './components/WeeklyMenu/WeeklyMenu';
-import AddRecipe from './components/Recipes/AddRecipe';
-import ListRecipe from './components/Recipes/ListRecipe';
-import Login from './components/Login/Login';
-import Signup from './components/Signup/Signup';
+import PrivateRoute from 'src/components/PrivateRoute/PrivateRoute';
+import { WeeklyMenu } from 'src/pages/Menu';
+import { AddRecipe, ListRecipe } from 'src/pages/Recipes';
+import { Login } from 'src/pages/Login';
+import { Signup } from 'src/pages/Signup';
 
 export default function Router() {
   return (
