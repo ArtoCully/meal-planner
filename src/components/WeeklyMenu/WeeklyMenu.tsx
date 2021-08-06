@@ -1,9 +1,9 @@
 import React from 'react';
-import { weeklyMenu, receipes } from '../../dummyData';
-import { generateWeeklyMenu } from '../../utils/generateMenu';
-import FixedNav from '../../components/Navigation/FixedNav';
-import { fetchRecipes } from '../../services/api';
-import { IRecipe } from '../../models/recipe';
+import { weeklyMenu, receipes } from 'src/dummyData';
+import { generateWeeklyMenu } from 'src/utils/generateMenu';
+import FixedNav from 'src/components/Navigation/FixedNav';
+import { fetchRecipes } from 'src/services/api';
+import { IRecipe } from 'src/models/recipe';
 import './WeeklyMenu.css';
 
 export default function WeeklyMenu() {

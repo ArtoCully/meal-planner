@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import useUserContext from '../../hooks/useUserContext';
+import useUserContext from 'src/hooks/useUserContext';
 
 interface IPrivateRouteProps {
   component?: React.ReactNode,

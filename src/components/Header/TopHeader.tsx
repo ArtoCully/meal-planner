@@ -1,8 +1,8 @@
 import React from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import { logout } from '../../services/authenticate';
-import useUserContext from '../../hooks/useUserContext';
-import logo from '../../logo.svg';
+import { logout } from 'src/services/authenticate';
+import useUserContext from 'src/hooks/useUserContext';
+import logo from 'src/logo.svg';
 import './TopHeader.css';
 
 export default function TopHeader() {

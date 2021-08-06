@@ -1,11 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { IUser } from '../../models/user';
-import { IStatusType } from '../../models/status';
-import { login } from '../../services/authenticate';
-import { createUser } from '../../services/api';
-import useUserContext from '../../hooks/useUserContext';
-import Toaster, { IToaster } from '../Toaster/Toaster';
+import { IUser } from 'src/models/user';
+import { IStatusType } from 'src/models/status';
+import { login } from 'src/services/authenticate';
+import { createUser } from 'src/services/api';
+import useUserContext from 'src/hooks/useUserContext';
+import Toaster, { IToaster } from 'src/components/Toaster/Toaster';
 import './Signup.css';
 
 export default function Signup() {

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { login } from '../../services/authenticate';
-import DividerWithText from '../Divider/DividerWithText';
-import useUserContext from '../../hooks/useUserContext';
-import { ILogin } from '../../models/user';
-import { LocationState } from '../../models/history';
+import { login } from 'src/services/authenticate';
+import DividerWithText from 'src/components/Divider/DividerWithText';
+import useUserContext from 'src/hooks/useUserContext';
+import { ILogin } from 'src/models/user';
+import { LocationState } from 'src/models/history';
 import './Login.css';
 
 export default function Login() {

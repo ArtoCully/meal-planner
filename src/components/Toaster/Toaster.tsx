@@ -1,6 +1,6 @@
 import React from 'react';
 import './Toaster.css';
-import { IStatusType } from '../../models/status';
+import { IStatusType } from 'src/models/status';
 
 export interface IToaster {
   type?: IStatusType,
