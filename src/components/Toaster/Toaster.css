@@ -12,8 +12,10 @@
 
 .App-toaster--error {
   background-color: var(--global-alert);
+  color: var(--global-colour-white);
 }
 
 .App-toaster-information {
   background-color: var(--global-information);
+  color: var(--global-colour-white);
 }
