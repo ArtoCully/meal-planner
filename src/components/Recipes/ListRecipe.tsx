@@ -2,16 +2,18 @@ import React from 'react';
 import { fetchRecipes, deleteRecipe } from '../../services/api';
 import { IRecipe } from '../../models/recipe';
 import FixedNav from '../../components/Navigation/FixedNav';
+import LinkButton from '../../components/LinkButton/LinkButton';
+import useUserContext from '../../hooks/useUserContext';
 import './ListRecipe.css';
 
 export default function ListRecipe() {
+  const { currentUser } = useUserContext();
   const recipeData: IRecipe[] = [];
   const [listRecipeState, setRecipeState] = React.useState(recipeData);
   React.useEffect(() => {
     (async () => {
       const recipeResponse = await fetchRecipes();
       if (recipeResponse && recipeResponse.status === 200) {
-        console.log('recipeResponse', recipeResponse);
         const recipes = recipeResponse.data;
         setRecipeState(recipes);
       }
@@ -30,13 +32,19 @@ export default function ListRecipe() {
     }
   };
 
+  const currentUserRecipes = currentUser && currentUser.recipes;
+
+  console.log('currentUserRecipes', currentUserRecipes);
+
   return (
     <section className="App-section App-recipe-list">
       <FixedNav />
       <h2>List Recipes</h2>
       <ul className="App-list App-recipe-list__container">
         {listRecipeState.map((recipe, index) => {
-          console.log(recipe);
+
+          const userHasAccess = currentUserRecipes.find((r: string) => r === recipe._id);
+          console.log('userHasAccess', userHasAccess);
           return (
             <li className="App-recipe-list__item" key={recipe._id}>
               <h3>{recipe.title}</h3>
@@ -57,7 +65,7 @@ export default function ListRecipe() {
                   </li>
                 ))}
               </ul>
-              <button data-id={recipe._id} onClick={handleDeleteRecipe}>Delete</button>
+              {userHasAccess && <LinkButton data-id={recipe._id} onClick={handleDeleteRecipe} text="Delete" />}
             </li>
           )
         })}
