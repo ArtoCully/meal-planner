@@ -1,11 +1,22 @@
 import React from 'react';
+import {
+  Button,
+  IconButton,
+  MinusIcon,
+  PlusIcon,
+  TextInput,
+  Pane,
+  Checkbox,
+  Heading,
+  majorScale,
+} from 'evergreen-ui';
 import { Toaster } from 'src/components/Toaster';
 import { IToaster } from 'src/components/Toaster/models';
 import { IRecipe } from 'src/models/recipe';
 import { createRecipe } from 'src/services/api';
 import { IStatusType } from 'src/models/status';
 import { FixedNav } from 'src/components/Navigation';
-import './AddRecipe.css';
+
 interface IFormObject extends IRecipe {
   whenState: any;
 }
@@ -146,59 +157,133 @@ export default function AddRecipe() {
   }
 
   return (
-    <section className="App-section App-recipe-add">
+    <Pane className="App-section">
       <FixedNav />
-      <h2>Add Recipe</h2>
+
+      <Heading
+        size={700}
+        marginBottom={majorScale(2)}
+        marginTop={majorScale(1)}
+      >
+          Add Recipe
+      </Heading>
+
       <form className="App-recipe-add__form">
         {formStatus.type && formStatus.message && 
           <div className="App-form-group">
             <Toaster type={formStatus.type} message={formStatus.message} />
           </div>
         }
-        <div className="App-form-group">
-          <label className="App-form-group__label-title">Title</label>
-          <input type="text" id="App-recipe-add__title" name="title" onChange={handleOnChangeInputText} value={formState.title}/>
-        </div>
 
-        <div className="App-form-group">
-          <label className="App-form-group__label-title">When</label>
-          {
-            Object.keys(formState.whenState).map((value: string, index: number) => {
+        <Pane className="App-form-group">
+          <Heading
+            size={400}
+            marginBottom={majorScale(2)}
+          >
+            Title
+          </Heading>
+  
+          <Pane
+            display="flex"
+            alignItems="center"
+            justifyContent="flex-start"
+          >
+            <TextInput
+              width="80vw"
+              type="text"
+              name="title"
+              onChange={handleOnChangeInputText}
+              value={formState.title}
+            />
+          </Pane>
+        </Pane>
+
+        <Pane className="App-form-group">
+          <Heading
+            size={400}
+            marginBottom={majorScale(2)}
+          >
+            When
+          </Heading>
+
+          <Pane>
+            {Object.keys(formState.whenState).map((value: string, index: number) => {
               return (
-                <div className="App-form-group--inline" key={index}>
-                  <input type="checkbox" id={`App-recipe-add__when--${value}`} name="when" value={value} onChange={handleOnChangeCheckbox} checked={formState.whenState[value]} />
-                  <label htmlFor={`App-recipe-add__when--${value}`}>
-                    {value}
-                  </label>
-                </div>
-              )
-            })
-          }
-        </div>
-        
-        <div className="App-form-group">
-          <label className="App-form-group__label-title">Ingredients</label>
+                  <Checkbox
+                    marginTop={0}
+                    marginBottom={majorScale(1)}
+                    key={index}
+                    label={value}
+                    id={`App-recipe-add__when--${value}`}
+                    name="when"
+                    value={value}
+                    onChange={handleOnChangeCheckbox}
+                    checked={formState.whenState[value]}
+                  />
+              )})
+            }
+          </Pane>
+        </Pane>
+
+        <Pane className="App-form-group">
+          <Heading
+            size={400}
+            marginBottom={majorScale(2)}
+          >
+            Ingredients
+          </Heading>
+
           {formState.ingredients.map((value, key) => {
             const newKey = key + 1;
             const showDelete = (key > 0) || (key >= 0 && formState.ingredients.length > 1);
 
             return (
-              <div className="App-form-group--inline" key={key}>
-                <input className="App-recipe-add__ingredient" type="text" placeholder={`Enter ingredient ${newKey}`} value={value} data-key={key} onChange={handleOnChangeIngredient} />
-                {showDelete && <button className="App-btn App-btn--small App-btn--delete App-recipe-add__ingredient-btn" data-key={key} data-ingredients={formState.ingredients} onClick={handleDeleteIngredient}>-</button>}
-                {(formState.ingredients.length-1) === key && <button className="App-btn App-btn--small App-btn--secondary App-recipe-add__ingredient-btn" onClick={handleAddIngredient(key, value, true)}>+</button>}
-              </div>
+              <Pane
+                key={key}
+                display="flex"
+                alignItems="center"
+                justifyContent="flex-start"
+                marginBottom={majorScale(1)}
+              >
+                <TextInput
+                  width="80vw"
+                  type="text" 
+                  placeholder={`Enter ingredient ${newKey}`}
+                  value={value}
+                  data-key={key}
+                  onChange={handleOnChangeIngredient}
+                  marginRight={majorScale(1)}
+                />
+                {showDelete &&
+                  <IconButton
+                    height={majorScale(4)}
+                    data-key={key}
+                    data-ingredients={formState.ingredients}
+                    onClick={handleDeleteIngredient}
+                    marginRight={majorScale(1)}
+                    icon={MinusIcon}></IconButton>
+                }
+                {(formState.ingredients.length-1) === key &&
+                  <IconButton
+                    height={majorScale(4)}
+                    onClick={handleAddIngredient(key, value, true)}
+                    icon={PlusIcon}></IconButton>
+                }
+              </Pane>
             )
           })}
-        </div>
+        </Pane>
 
-        <button
-          className="App-btn App-btn--primary App-btn__add-recipe"
+        <Button
+          width="100%"
+          appearance="primary"
+          intent="none"
+          size="large"
           onClick={handleAddRecipe}>
             Add
-        </button>
+        </Button>
       </form>
-    </section>
+    </Pane>
   );
 }
 
