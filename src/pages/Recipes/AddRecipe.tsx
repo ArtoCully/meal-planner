@@ -8,6 +8,7 @@ import {
   Pane,
   Checkbox,
   Heading,
+  TagInput,
   majorScale,
 } from 'evergreen-ui';
 import { Toaster } from 'src/components/Toaster';
@@ -18,7 +19,8 @@ import { IStatusType } from 'src/models/status';
 import { FixedNav } from 'src/components/Navigation';
 
 interface IFormObject extends IRecipe {
-  whenState: any;
+  whenState: any,
+  tags?: string[],
 }
 
 export default function AddRecipe() {
@@ -30,7 +32,8 @@ export default function AddRecipe() {
       'breakfast': false,
       'lunch': false,
       'dinner': false
-    }
+    },
+    tags: [],
   }
 
   const formStatusObject: IToaster = {
@@ -156,6 +159,14 @@ export default function AddRecipe() {
     setFormState(formData);
   }
 
+  const handleOnChangeTags = (values: any) => {
+    const data = {
+      ...formState,
+      tags: values
+    }
+    setFormState(data);
+  }
+
   return (
     <Pane className="App-section">
       <FixedNav />
@@ -274,6 +285,22 @@ export default function AddRecipe() {
           })}
         </Pane>
 
+        <Pane className="App-form-group">
+          <Heading
+            size={400}
+            marginBottom={majorScale(2)}
+          >
+            Ingredients
+          </Heading>
+
+          <TagInput
+            inputProps={{ placeholder: 'Add tags...' }}
+            values={formState.tags}
+            onChange={values => {
+              handleOnChangeTags(values)
+            }}
+          />
+        </Pane>
         <Button
           width="100%"
           appearance="primary"
