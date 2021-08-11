@@ -290,7 +290,7 @@ export default function AddRecipe() {
             size={400}
             marginBottom={majorScale(2)}
           >
-            Ingredients
+            Tags
           </Heading>
 
           <TagInput
