@@ -17,13 +17,15 @@ import { IRecipe } from 'src/models/recipe';
 import { createRecipe } from 'src/services/api';
 import { IStatusType } from 'src/models/status';
 import { FixedNav } from 'src/components/Navigation';
-
+import useUserContext from 'src/hooks/useUserContext';
 interface IFormObject extends IRecipe {
   whenState: any,
   tags?: string[],
 }
 
 export default function AddRecipe() {
+  const { currentUser, setCurrentUser } = useUserContext();
+
   const formObject: IFormObject = {
     title: '',
     when: [],
@@ -121,6 +123,14 @@ export default function AddRecipe() {
         });
 
         setFormState(formObject);
+
+        const newRecipes = currentUser.recipes.length ? [...currentUser.recipes, formResponse.data.id] : [formResponse.data.id];
+        const updateCurrentUser = {
+          ...currentUser,
+          recipes: newRecipes
+        }
+
+        setCurrentUser(updateCurrentUser);
       }
       if (formResponse.status >= 400 && formResponse.status < 500) {
         const message = formResponse.data.message ? formResponse.data.message : 'Something went wrong try again';

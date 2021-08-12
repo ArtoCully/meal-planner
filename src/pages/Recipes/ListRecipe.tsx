@@ -40,7 +40,11 @@ export default function ListRecipe() {
       <h2>List Recipes</h2>
       <ul className="App-list App-recipe-list__container">
         {listRecipeState.map((recipe) => {
-          const userHasAccessToRecipe = currentUserRecipes.find((r: string) => r === recipe._id);
+          const userHasAccessToRecipe = currentUserRecipes.find((r: string) => {
+            return r === recipe._id;
+          });
+
+          console.log('userHasHaccessToRecipe', userHasAccessToRecipe);
 
           return (
             <li className="App-recipe-list__item" key={recipe._id}>
