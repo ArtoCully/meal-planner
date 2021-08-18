@@ -124,3 +124,15 @@ export async function authenticate(params: ILogin) {
     return e.response
   }
 }
+
+export async function fetchCurrentUser() {
+  try {
+    const response = await instance.get('/users/current');
+
+    if (response && response.status === 200 && response.data) {
+      return response.data;
+    }
+  } catch(e) {
+    console.log('fetch current user error', e);
+  }
+}
