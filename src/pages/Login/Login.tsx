@@ -72,7 +72,7 @@ export default function Login() {
           <Link to="/signup" className="App-btn App-btn--secondary App-btn__signup">Signup</Link>
         </div>
         <div className="App-form-group">
-          <Link to="/">Continue as guest</Link>
+          <Link to="/recipes/list">Continue as guest</Link>
         </div>
       </form>
     </section>

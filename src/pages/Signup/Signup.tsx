@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { IUser } from 'src/models/user';
 import { IStatusType } from 'src/models/status';
 import useProvideAuth from 'src/hooks/useProvideAuth';
@@ -6,6 +7,7 @@ import useAuth from 'src/hooks/useAuth';
 import { useRouter } from 'src/hooks/useRouter';
 import { Toaster } from 'src/components/Toaster';
 import { IToaster } from 'src/components/Toaster/models';
+import { DividerWithText } from 'src/components/Divider';
 import './Signup.css';
 
 export default function Signup() {
@@ -49,8 +51,6 @@ export default function Signup() {
     }
 
     const authenticateResponse = await auth.signup(otherFormState, formState);
-
-    console.log('authenticateResponse', authenticateResponse);
 
     if (authenticateResponse) {
       if (authenticateResponse.status === 200) {
@@ -135,6 +135,12 @@ export default function Signup() {
           <button className="App-btn App-btn--primary App-btn__signup" onClick={handleFormSubmit}>Signup</button>
         </div>
       </form>
+
+      <DividerWithText text="OR" lineColour="#333" textColour="#333" />
+
+      <div className="App-form-group">
+        <Link to="/login">Login</Link>
+      </div>
     </section>
   )
 }
