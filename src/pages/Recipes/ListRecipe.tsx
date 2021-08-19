@@ -3,11 +3,11 @@ import { fetchRecipes, deleteRecipe } from 'src/services/api';
 import { IRecipe } from 'src/models/recipe';
 import { FixedNav } from 'src/components/Navigation';
 import { LinkButton } from 'src/components/LinkButton';
-import useUserContext from 'src/hooks/useUserContext';
+import useAuth from 'src/hooks/useAuth';
 import './ListRecipe.css';
 
 export default function ListRecipe() {
-  const { currentUser } = useUserContext();
+  const { currentUser } = useAuth();
   const recipeData: IRecipe[] = [];
   const [listRecipeState, setRecipeState] = React.useState(recipeData);
 

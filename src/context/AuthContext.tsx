@@ -12,20 +12,20 @@ interface IUserProvider {
   confirmPasswordReset?: () => void,
 }
 
-const userContextValue: any = null;
-export const UserContext = React.createContext(userContextValue);
+const authContextValue: any = null;
+export const AuthContext = React.createContext(authContextValue);
 
-export const UserContextProvider = ({ children }: IUserProvider) => {
+export const AuthContextProvider = ({ children }: IUserProvider) => {
   const auth = useProvideAuth();
 
   return (
-    <UserContext.Provider
+    <AuthContext.Provider
       value={auth}
     >
       {children}
-    </UserContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
-export const UserContextConsumer = UserContext.Consumer;
-export default UserContextProvider;
+export const AuthContextConsumer = AuthContext.Consumer;
+export default AuthContextProvider;

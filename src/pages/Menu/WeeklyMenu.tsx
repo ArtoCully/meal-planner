@@ -4,14 +4,14 @@ import { generateWeeklyMenu } from 'src/utils/generateMenu';
 import { FixedNav } from 'src/components/Navigation';
 import { fetchRecipesByUserId } from 'src/services/api';
 import { IRecipe } from 'src/models/recipe';
-import useUserContext from 'src/hooks/useUserContext';
+import useAuth from 'src/hooks/useAuth';
 import { Toaster } from 'src/components/Toaster';
 import { IToaster } from 'src/components/Toaster/models';
 import { IStatusType } from 'src/models/status';
 import './WeeklyMenu.css';
 
 export default function WeeklyMenu() {
-  const { currentUser } = useUserContext();
+  const { currentUser } = useAuth();
   // NOTE eventually only update to
   // only fetch users recipes
   const recipeData: IRecipe[] = [];

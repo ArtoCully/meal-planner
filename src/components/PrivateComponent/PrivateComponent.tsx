@@ -1,5 +1,5 @@
 import React from 'react';
-// import useUserContext from '../../hooks/useUserContext';
+// import useAuth from '../../hooks/useAuth';
 
 interface IMatch {
   key: string,
@@ -13,7 +13,7 @@ interface IPrivateComponentProps {
 }
 
 const PrivateComponent: React.FC<IPrivateComponentProps> = ({ component, match, ...rest }) => {
-    // const { currentUser } = useUserContext();
+    // const { currentUser } = useAuth();
     const Component = component as any;
 
     // if (!currentUser) {

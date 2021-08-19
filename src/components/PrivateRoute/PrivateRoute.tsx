@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import useUserContext from 'src/hooks/useUserContext';
+import useAuth from 'src/hooks/useAuth';
 
 interface IPrivateRouteProps {
   component?: React.ReactNode,
 }
 
 const PrivateRoute: React.FC<IPrivateRouteProps> = ({ component, ...rest }) => {
-    const { currentUser } = useUserContext();
+    const { currentUser } = useAuth();
 
     return (
         <Route {...rest} render={props => {

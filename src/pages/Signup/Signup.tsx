@@ -4,7 +4,7 @@ import { IUser } from 'src/models/user';
 import { IStatusType } from 'src/models/status';
 import { login } from 'src/services/authenticate';
 import { createUser } from 'src/services/api';
-import useUserContext from 'src/hooks/useUserContext';
+import useAuth from 'src/hooks/useAuth';
 import { Toaster } from 'src/components/Toaster';
 import { IToaster } from 'src/components/Toaster/models';
 import './Signup.css';
@@ -26,7 +26,7 @@ export default function Signup() {
   const [formState, setFormState] = React.useState(formData);
   const [formStatus, setFormStatus] = React.useState(formStatusObject);
   const history = useHistory();
-  const { setCurrentUser } = useUserContext();
+  const { setCurrentUser } = useAuth();
 
   const handleFormSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();

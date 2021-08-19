@@ -2,13 +2,13 @@ import React from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { login } from 'src/services/authenticate';
 import { DividerWithText } from 'src/components/Divider';
-import useUserContext from 'src/hooks/useUserContext';
+import useAuth from 'src/hooks/useAuth';
 import { ILogin } from 'src/models/user';
 import { LocationState } from 'src/models/history';
 import './Login.css';
 
 export default function Login() {
-  const { setCurrentUser } = useUserContext();
+  const { setCurrentUser } = useAuth();
   const history = useHistory();
   const location: LocationState  = useLocation();
   const formObject: ILogin = {

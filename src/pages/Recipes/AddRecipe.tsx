@@ -17,14 +17,14 @@ import { IRecipe } from 'src/models/recipe';
 import { createRecipe } from 'src/services/api';
 import { IStatusType } from 'src/models/status';
 import { FixedNav } from 'src/components/Navigation';
-import useUserContext from 'src/hooks/useUserContext';
+import useAuth from 'src/hooks/useAuth';
 interface IFormObject extends IRecipe {
   whenState: any,
   tags?: string[],
 }
 
 export default function AddRecipe() {
-  const { currentUser, setCurrentUser } = useUserContext();
+  const { currentUser, setCurrentUser } = useAuth();
 
   const formObject: IFormObject = {
     title: '',

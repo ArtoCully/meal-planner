@@ -1,12 +1,12 @@
 import React from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { logout } from 'src/services/authenticate';
-import useUserContext from 'src/hooks/useUserContext';
+import useAuth from 'src/hooks/useAuth';
 import logo from 'src/logo.svg';
 import './TopHeader.css';
 
 export default function TopHeader() {
-  const { currentUser, setCurrentUser } = useUserContext();
+  const { currentUser, setCurrentUser } = useAuth();
 
   const history = useHistory();
   // TODO: currentUser prop should

@@ -1,9 +1,9 @@
 import React from 'react';
-import useUserContext from 'src/hooks/useUserContext';
+import useAuth from 'src/hooks/useAuth';
 import { useRouter } from 'src/hooks/useRouter';
 
 function useRequireAuth(redirectUrl = "/signup") {
-  const auth = useUserContext();
+  const auth = useAuth();
   const router = useRouter();
 
   React.useEffect(() => {
