@@ -1,7 +1,7 @@
 import React from 'react';
 import { AxiosResponse } from 'axios';
 import useProvideAuth from 'src/hooks/useProvideAuth';
-interface IUserProvider {
+interface IAuthProvider {
   children?: React.ReactNode,
   currentUser?: any,
   setCurrentUser?: () => void,
@@ -15,7 +15,7 @@ interface IUserProvider {
 const authContextValue: any = null;
 export const AuthContext = React.createContext(authContextValue);
 
-export const AuthContextProvider = ({ children }: IUserProvider) => {
+export const AuthContextProvider = ({ children }: IAuthProvider) => {
   const auth = useProvideAuth();
 
   return (

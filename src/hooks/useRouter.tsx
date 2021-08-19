@@ -5,11 +5,12 @@ import {
   useHistory,
   useRouteMatch,
 } from "react-router-dom";
+import { LocationState } from 'src/models/history';
 import queryString from 'query-string';
 
 export function useRouter() {
   const params = useParams();
-  const location = useLocation();
+  const location: LocationState = useLocation();
   const history = useHistory();
   const match = useRouteMatch();
   // Return our custom router object

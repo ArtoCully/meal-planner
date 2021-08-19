@@ -1,10 +1,9 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { IUser } from 'src/models/user';
 import { IStatusType } from 'src/models/status';
-import { login } from 'src/services/authenticate';
-import { createUser } from 'src/services/api';
+import useProvideAuth from 'src/hooks/useProvideAuth';
 import useAuth from 'src/hooks/useAuth';
+import { useRouter } from 'src/hooks/useRouter';
 import { Toaster } from 'src/components/Toaster';
 import { IToaster } from 'src/components/Toaster/models';
 import './Signup.css';
@@ -25,7 +24,8 @@ export default function Signup() {
 
   const [formState, setFormState] = React.useState(formData);
   const [formStatus, setFormStatus] = React.useState(formStatusObject);
-  const history = useHistory();
+  const router = useRouter();
+  const auth = useProvideAuth();
   const { setCurrentUser } = useAuth();
 
   const handleFormSubmit = async (event: React.SyntheticEvent) => {
@@ -48,44 +48,47 @@ export default function Signup() {
       return;
     }
 
-    const formResponse = await createUser(otherFormState);
+    const authenticateResponse = await auth.signup(otherFormState, formState);
 
-    if (formResponse) {
-      if (formResponse.status === 200) {
-        // TODO: Refactor code
-        // Move authentication to a
-        // wrapper component that can
-        // be reused on other components
-        const authenticateResponse = await login(formState);
-        if (authenticateResponse && authenticateResponse.status === 200) {
+    console.log('authenticateResponse', authenticateResponse);
 
-          setCurrentUser(authenticateResponse.data);
+    if (authenticateResponse) {
+      if (authenticateResponse.status === 200) {
+        setFormStatus({
+          type: IStatusType.success,
+          message: 'Successfully created'
+        });
 
-          // TODO: Refactor
-          // on success display
-          // the success message
-          // on a seperate page
-          // then redirect to home
-          setFormStatus({
-            type: IStatusType.success,
-            message: 'Successfully created'
-          });
-
-          setFormState(formData);
-
-          setTimeout(() => {
-            history.push('/');
-          }, 400);
-        }
+        setCurrentUser(authenticateResponse.data);
+        setFormState(formData);
+        setTimeout(() => {
+          const pathname = router.location &&
+          router.location.state &&
+          router.location.state.from &&
+          router.location.state.from.pathname;
+  
+          if (pathname) {
+            router.push(pathname);
+          } else {
+            router.push('/');
+          }
+        }, 100);
       }
+      if (authenticateResponse.status >= 400) {
+        const message = authenticateResponse.data.message
+          ? authenticateResponse.data.message
+          : 'Internal error, try again';
 
-      if (formResponse.status >= 400 && formResponse.status < 500) {
-        const message = formResponse.data.message ? formResponse.data.message : 'Something went wrong try again';
         setFormStatus({
           type: IStatusType.error,
           message,
-        })
+        });
       }
+    } else {
+      setFormStatus({
+        type: IStatusType.error,
+        message: 'Internal error, try again',
+      });
     }
   }
 

@@ -97,7 +97,7 @@ export async function createUser(params: IUser) {
       })
     return result;
   } catch (e) {
-    console.log('create user error', e);
+    console.log('create user error', e.response);
     return e.response;
   }
 }

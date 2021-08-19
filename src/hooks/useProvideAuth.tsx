@@ -1,9 +1,11 @@
 import React from 'react';
 import Cookies from 'js-cookie';
+import { useRouter } from 'src/hooks/useRouter';
 import { createUser, authenticate } from 'src/services/api';
 import { IUser, ILogin } from 'src/models/user';
 
 function useProvideAuth() {
+  const router = useRouter();
   const [currentUser, setCurrentUser] = React.useState(null);
 
   const login = async ({ username, password }: ILogin) => {
@@ -27,20 +29,20 @@ function useProvideAuth() {
   };
 
   const signup = async (signupParams: IUser, loginParams: ILogin) => {
+    let formResponse;
+    let authenticateResponse;
+
     try {
-    const formResponse = await createUser(signupParams);
+      formResponse = await createUser(signupParams);
 
-    if (formResponse.status === 200) {
-      const authenticateResponse = await login(loginParams);
-
-      if (authenticateResponse && authenticateResponse.status === 200) {
-        setCurrentUser(authenticateResponse.data);
-        return authenticateResponse;
+      if (formResponse.status === 200) {
+        authenticateResponse = await login(loginParams);
       }
-    }
     } catch (err) {
       console.log('Error signinup', err);
     }
+
+    return authenticateResponse || formResponse;
   };
 
   const logout = () => {
@@ -51,6 +53,7 @@ function useProvideAuth() {
 
     if (!app_user && !app_tok) {
       setCurrentUser(null);
+      router.push('/login');
       return true;
     }
 

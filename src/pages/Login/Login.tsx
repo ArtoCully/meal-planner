@@ -1,16 +1,17 @@
 import React from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { login } from 'src/services/authenticate';
+import { Link } from 'react-router-dom';
 import { DividerWithText } from 'src/components/Divider';
+import useProvideAuth from 'src/hooks/useProvideAuth';
 import useAuth from 'src/hooks/useAuth';
+import { useRouter } from 'src/hooks/useRouter';
 import { ILogin } from 'src/models/user';
-import { LocationState } from 'src/models/history';
 import './Login.css';
 
 export default function Login() {
+  const { login } = useProvideAuth();
   const { setCurrentUser } = useAuth();
-  const history = useHistory();
-  const location: LocationState  = useLocation();
+  const router = useRouter();
+
   const formObject: ILogin = {
     username: '',
     password: '',
@@ -38,17 +39,17 @@ export default function Login() {
 
     const response = await login(formState);
     if (response && response.status === 200) {
-      const pathname = location &&
-        location.state &&
-        location.state.from &&
-        location.state.from.pathname;
+      const pathname = router.location &&
+        router.location.state &&
+        router.location.state.from &&
+        router.location.state.from.pathname;
 
       setCurrentUser(response.data);
 
       if (pathname) {
-        history.push(pathname);
+        router.push(pathname);
       } else {
-        history.push('/');
+        router.push('/');
       }
     }
   };
