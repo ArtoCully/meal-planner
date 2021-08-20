@@ -1,9 +1,58 @@
 import React from 'react';
+import styled from 'styled-components';
+import {
+  Pane,
+  Avatar,
+  Popover,
+  Menu,
+  Button,
+  Position,
+  PeopleIcon,
+  LogOutIcon,
+  majorScale
+} from 'evergreen-ui';
 import { useHistory, Link } from 'react-router-dom';
 import useProvideAuth from 'src/hooks/useProvideAuth';
 import useAuth from 'src/hooks/useAuth';
 import logo from 'src/logo.svg';
-import './TopHeader.css';
+
+const Header = styled(Pane)`
+  background: white;
+  border: 1px solid #EEEEEE;
+  max-height: 50px;
+  font-size: calc(10px + 2vmin);
+  color: var(--global-colour-black);
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  padding: 10px;
+`;
+
+const LinkLogo = styled(Link)`
+  max-width: 69px;
+  width: 69px;
+  height: auto;
+  pointer-events: none;
+
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+`;
+
+const StyledAvatar = styled(Avatar)`
+  cursor: pointer;
+
+  span {
+    user-select: none;
+  }
+`;
 
 export default function TopHeader() {
   const { currentUser, setCurrentUser } = useAuth();
@@ -23,10 +72,33 @@ export default function TopHeader() {
   }
 
   return (
-    <header className="App-header">
-      <Link to="/" className="App-logo" ><img src={logo} alt="logo" /></Link>
-      {currentUser && <span>{currentUser.username}</span>}
-      {currentUser && <button className="App-logout" onClick={handleLogout}>Logout</button>}
-    </header>
+    <Header is="header">
+      <LinkLogo to="/"><img src={logo} alt="logo" /></LinkLogo>
+      {currentUser &&
+      <Popover
+        position={Position.BOTTOM_LEFT}
+        content={
+          <Menu>
+            <Menu.Group>
+              <Menu.Item disabled icon={PeopleIcon}>
+                Profile
+              </Menu.Item>
+            </Menu.Group>
+            <Menu.Divider />
+            <Menu.Group>
+              <Menu.Item icon={LogOutIcon} intent="none">
+                <Button onClick={handleLogout}>Logout</Button>
+              </Menu.Item>
+            </Menu.Group>
+          </Menu>
+        }
+      >
+        <StyledAvatar
+          name={currentUser.username}
+          size={40}
+        />
+      </Popover>
+      }
+    </Header>
   )
 }
