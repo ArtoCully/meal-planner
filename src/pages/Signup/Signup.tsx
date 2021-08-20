@@ -1,5 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {
+  Pane,
+  Button
+} from 'evergreen-ui';
+import { FormGroup, TextInput } from 'src/components/Form';
 import { IUser } from 'src/models/user';
 import { IStatusType } from 'src/models/status';
 import useProvideAuth from 'src/hooks/useProvideAuth';
@@ -8,7 +13,6 @@ import { useRouter } from 'src/hooks/useRouter';
 import { Toaster } from 'src/components/Toaster';
 import { IToaster } from 'src/components/Toaster/models';
 import { DividerWithText } from 'src/components/Divider';
-import './Signup.css';
 
 export default function Signup() {
   const formData: IUser = {
@@ -108,39 +112,101 @@ export default function Signup() {
   }
 
   return (
-    <section className="App-section App-signup">
+    <Pane
+      is="section"
+      className="App-section App-signup"
+      height="100vh"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      flexDirection="column"
+    >
       <h2>Signup</h2>
-      <form className="App-signup__form">
+      <Pane
+        is="form"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
+        width="80vw"
+      >
         {formStatus.type && formStatus.message && 
           <div className="App-form-group">
             <Toaster type={formStatus.type} message={formStatus.message} />
           </div>
         }
-        <div className="App-form-group">
-          <input className="App-signup__input" type="text" onChange={handleSetInput} id="App-signup__form-first-name" name="firstName" placeholder="Enter your firstname" />
-        </div>
-        <div className="App-form-group">
-          <input className="App-signup__input" type="text" onChange={handleSetInput} id="App-signup__form-last-name" name="lastName" placeholder="Enter your lastname" />
-        </div>
-        <div className="App-form-group">
-          <input className="App-signup__input" type="text" onChange={handleSetInput} id="App-signup__form-username" name="username" placeholder="Enter your username" />
-        </div>
-        <div className="App-form-group">
-          <input className="App-signup__input" type="password" onChange={handleSetInput} id="App-signup__form-password" name="password" placeholder="Enter your password" />
-        </div>
-        <div className="App-form-group">
-          <input className="App-signup__input" type="password" onChange={handleSetInput} id="App-signup__form-confirm-password" name="confirmPassword" placeholder="Confirm your password" />
-        </div>
-        <div className="App-form-group">
-          <button className="App-btn App-btn--primary App-btn__signup" onClick={handleFormSubmit}>Signup</button>
-        </div>
-      </form>
+        <FormGroup>
+          <TextInput
+            type="text"
+            onChange={handleSetInput}
+            id="App-signup__form-first-name"
+            name="firstName"
+            placeholder="Enter your firstname"
+          />
+        </FormGroup>
+        <FormGroup>
+          <TextInput
+            type="text"
+            onChange={handleSetInput}
+            id="App-signup__form-last-name"
+            name="lastName"
+            placeholder="Enter your lastname"
+          />
+        </FormGroup>
+        <FormGroup>
+          <TextInput
+            type="text"
+            onChange={handleSetInput}
+            id="App-signup__form-username"
+            name="username"
+            placeholder="Enter your username"
+          />
+        </FormGroup>
+        <FormGroup>
+          <TextInput
+            type="password"
+            onChange={handleSetInput}
+            id="App-signup__form-password"
+            name="password"
+            placeholder="Enter your password"
+          />
+        </FormGroup>
+        <FormGroup>
+          <TextInput
+            type="password"
+            onChange={handleSetInput}
+            id="App-signup__form-confirm-password"
+            name="confirmPassword"
+            placeholder="Confirm your password" 
+          />
+        </FormGroup>
+        <FormGroup
+          className="App-form-group"
+          marginBottom="0"
+        >
+          <Button
+            width="100%"
+            appearance="primary"
+            intent="none"
+            size="large"
+            onClick={handleFormSubmit}>
+              Signup
+          </Button>
+        </FormGroup>
+      </Pane>
 
       <DividerWithText text="OR" lineColour="#333" textColour="#333" />
 
-      <div className="App-form-group">
+      <Pane
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        marginBottom="20px"
+        width="100%"
+      >
         <Link to="/login">Login</Link>
-      </div>
-    </section>
+      </Pane>
+    </Pane>
   )
 }

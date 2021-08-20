@@ -1,11 +1,28 @@
 import React from 'react';
+import styled from 'styled-components';
+import {
+  Button,
+  Pane,
+  Heading,
+  majorScale
+} from 'evergreen-ui';
+import { FormGroup, TextInput } from 'src/components/Form';
 import { Link } from 'react-router-dom';
 import { DividerWithText } from 'src/components/Divider';
 import useProvideAuth from 'src/hooks/useProvideAuth';
 import useAuth from 'src/hooks/useAuth';
 import { useRouter } from 'src/hooks/useRouter';
 import { ILogin } from 'src/models/user';
-import './Login.css';
+
+const CustomFormGroup = styled(FormGroup)`
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+
+const CustomFormGroupBottom = styled(CustomFormGroup)`
+  margin-bottom: 0;
+`;
 
 export default function Login() {
   const { login } = useProvideAuth();
@@ -55,26 +72,74 @@ export default function Login() {
   };
 
   return (
-    <section className="App-section App-login">
-      <h2>Login</h2>
-      <form className="App-login__form">
-        <div className="App-form-group">
-          <input type="text" onChange={handleSetInput} id="App-login__form-username" name="username" placeholder="Enter your username" />
-        </div>
-        <div className="App-form-group">
-          <input type="password" onChange={handleSetInput} id="App-login__form-password" name="password" placeholder="Enter your password" />
-        </div>
-        <div className="App-form-group">
-          <button className="App-btn App-btn--primary App-btn__login" onClick={handleLogin}>Login</button>
-        </div>
+    <Pane
+      is="section"
+      height="100vh"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      flexDirection="column"
+      className="App-section App-login"
+    >
+      <Heading
+        size={700}
+        marginBottom={majorScale(2)}
+        marginTop={majorScale(1)}
+      >
+        Login
+      </Heading>
+
+      <Pane
+        is="form"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
+        width="80vw"
+      >
+        <CustomFormGroup>
+          <TextInput
+            type="text"
+            onChange={handleSetInput}
+            id="App-login__form-username"
+            name="username"
+            placeholder="Enter your username"
+          />
+        </CustomFormGroup>
+        <CustomFormGroup>
+          <TextInput
+            type="password"
+            onChange={handleSetInput}
+            id="App-login__form-password"
+            name="password"
+            placeholder="Enter your password"
+          />
+        </CustomFormGroup>
+        <CustomFormGroupBottom>
+          <Button
+            width="100%"
+            appearance="primary"
+            intent="none"
+            size="large"
+            onClick={handleLogin}>
+              Login
+          </Button>
+        </CustomFormGroupBottom>
         <DividerWithText text="OR" lineColour="#333" textColour="#333" />
-        <div className="App-form-group">
-          <Link to="/signup" className="App-btn App-btn--secondary App-btn__signup">Signup</Link>
-        </div>
-        <div className="App-form-group">
+        <CustomFormGroup>
+          <Button
+            is={Link}
+            width="100%"
+            intent="none"
+            size="large"
+            to="/signup">
+            Signup
+          </Button>
+        </CustomFormGroup>
+        <CustomFormGroup>
           <Link to="/recipes/list">Continue as guest</Link>
-        </div>
-      </form>
-    </section>
+        </CustomFormGroup>
+      </Pane>
+    </Pane>
   )
 }
