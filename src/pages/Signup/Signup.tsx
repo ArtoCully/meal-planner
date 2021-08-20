@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import {
   Pane,
   Button
@@ -13,6 +14,10 @@ import { useRouter } from 'src/hooks/useRouter';
 import { Toaster } from 'src/components/Toaster';
 import { IToaster } from 'src/components/Toaster/models';
 import { DividerWithText } from 'src/components/Divider';
+
+const FormGroupBottom = styled(FormGroup)`
+  margin-bottom: 0;
+`;
 
 export default function Signup() {
   const formData: IUser = {
@@ -180,10 +185,7 @@ export default function Signup() {
             placeholder="Confirm your password" 
           />
         </FormGroup>
-        <FormGroup
-          className="App-form-group"
-          marginBottom="0"
-        >
+        <FormGroupBottom>
           <Button
             width="100%"
             appearance="primary"
@@ -192,7 +194,7 @@ export default function Signup() {
             onClick={handleFormSubmit}>
               Signup
           </Button>
-        </FormGroup>
+        </FormGroupBottom>
       </Pane>
 
       <DividerWithText text="OR" lineColour="#333" textColour="#333" />
