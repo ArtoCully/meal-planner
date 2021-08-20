@@ -1,7 +1,6 @@
 import React from 'react';
 import { Pane, Heading } from 'evergreen-ui';
 import styled from 'styled-components';
-import './DividerWithText.css';
 
 interface IDividerWithText {
   text?: string;
