@@ -9,7 +9,6 @@ import {
   Position,
   PeopleIcon,
   LogOutIcon,
-  majorScale
 } from 'evergreen-ui';
 import { useHistory, Link } from 'react-router-dom';
 import useProvideAuth from 'src/hooks/useProvideAuth';
