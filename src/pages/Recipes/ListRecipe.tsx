@@ -1,10 +1,28 @@
 import React from 'react';
+import {
+  Button,
+  Heading,
+  Pane,
+  majorScale,
+  Checkbox,
+} from 'evergreen-ui';
+import styled from 'styled-components';
 import { fetchRecipes, deleteRecipe } from 'src/services/api';
 import { IRecipe } from 'src/models/recipe';
 import { FixedNav } from 'src/components/Navigation';
-import { LinkButton } from 'src/components/LinkButton';
 import useAuth from 'src/hooks/useAuth';
-import './ListRecipe.css';
+
+const ListItem = styled(Pane)`
+  border-bottom: 1px solid var(--global-colour-grey-1);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+`;
+
+const NextListItem = styled(Pane)`
+  font-size: 14px;
+`;
 
 export default function ListRecipe() {
   const { currentUser } = useAuth();
@@ -35,10 +53,25 @@ export default function ListRecipe() {
   const currentUserRecipes = currentUser && currentUser.recipes;
 
   return (
-    <section className="App-section App-recipe-list">
+    <Pane is="section" className="App-section App-recipe-list">
       <FixedNav />
-      <h2>List Recipes</h2>
-      <ul className="App-list App-recipe-list__container">
+      <Heading
+        size={700}
+        marginBottom={majorScale(2)}
+        marginTop={majorScale(1)}
+      >
+        List Recipes
+      </Heading>
+      <Pane
+        is="ul"
+        display="flex"
+        flexDirection="column"
+        justifyContent="flexStart"
+        alignItems="flexStart"
+        textAlign="left"
+        listStyle="none"
+        paddingLeft="0"
+      >
         {listRecipeState.map((recipe) => {
           const userHasAccessToRecipe = currentUserRecipes
             ? currentUserRecipes.find((r: string) => (r === recipe._id))
@@ -47,30 +80,45 @@ export default function ListRecipe() {
           console.log('userHasHaccessToRecipe', userHasAccessToRecipe);
 
           return (
-            <li className="App-recipe-list__item" key={recipe._id}>
-              <h3>{recipe.title}</h3>
-              <h4>When to eat</h4>
-              <ul className="App-list App-recipe-list__when">
+            <ListItem
+              is="li"
+              paddingTop={majorScale(3)}
+              paddingBottom={majorScale(3)}
+              width="100%"
+              key={recipe._id}
+            >
+              <Heading size={500} marginBottom={majorScale(2)}>{recipe.title}</Heading>
+              <Heading size={400} marginBottom={majorScale(1)}>When to eat</Heading>
+              <Pane is="ul" listStyle="none" paddingLeft="0">
                 {recipe.when.map((w, key) => (
-                  <li key={key}>
-                    <input type="checkbox" disabled checked={true} />
-                    <span>{w}</span>
-                  </li>
+                  <NextListItem is="li" key={key}>
+                    <Checkbox disabled checked label={w} />
+                  </NextListItem>
                 ))}
-              </ul>
-              <h4>Ingredients</h4>
-              <ul className="App-list App-recipe-list__ingredients">
+              </Pane>
+              <Heading size={400} marginBottom={majorScale(1)}>Ingredients</Heading>
+              <Pane is="ul" listStyle="none" paddingLeft="0">
                 {recipe.ingredients.map((ingredient, key) => (
-                  <li key={key}>
+                  <NextListItem is="li" key={key}>
                     {ingredient}
-                  </li>
+                  </NextListItem>
                 ))}
-              </ul>
-              {userHasAccessToRecipe && <LinkButton data-id={recipe._id} onClick={handleDeleteRecipe} text="Delete" />}
-            </li>
+              </Pane>
+              {
+                userHasAccessToRecipe && <Button
+                  marginTop={majorScale(2)}
+                  width="100%"
+                  appearance="primary"
+                  data-id={recipe._id}
+                  onClick={handleDeleteRecipe}
+                >
+                  Delete
+                </Button>
+              }
+            </ListItem>
           )
         })}
-      </ul>
-    </section>
+      </Pane>
+    </Pane>
   )
 };
