@@ -6,6 +6,7 @@ import {
   majorScale,
   Checkbox,
 } from 'evergreen-ui';
+import { PageTitle } from 'src/components/atoms';
 import styled from 'styled-components';
 import { fetchRecipes, deleteRecipe } from 'src/services/api';
 import { IRecipe } from 'src/models/recipe';
@@ -55,13 +56,10 @@ export default function ListRecipe() {
   return (
     <Pane is="section" className="App-section App-recipe-list">
       <FixedNav />
-      <Heading
-        size={700}
-        marginBottom={majorScale(2)}
-        marginTop={majorScale(1)}
-      >
+      <PageTitle>
         List Recipes
-      </Heading>
+      </PageTitle>
+
       <Pane
         is="ul"
         display="flex"

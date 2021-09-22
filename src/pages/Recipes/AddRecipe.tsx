@@ -11,6 +11,7 @@ import {
   TagInput,
   majorScale,
 } from 'evergreen-ui';
+import { PageTitle } from 'src/components/atoms';
 import { Toaster } from 'src/components/Toaster';
 import { IToaster } from 'src/components/Toaster/models';
 import { IRecipe } from 'src/models/recipe';
@@ -179,14 +180,7 @@ export default function AddRecipe() {
   return (
     <Pane className="App-section">
       <FixedNav />
-
-      <Heading
-        size={700}
-        marginBottom={majorScale(2)}
-        marginTop={majorScale(1)}
-      >
-          Add Recipe
-      </Heading>
+      <PageTitle>Add Recipe</PageTitle>
 
       <form className="App-recipe-add__form">
         {formStatus.type && formStatus.message && 
