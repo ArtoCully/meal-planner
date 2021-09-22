@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  Button,
+  majorScale,
+  Table,
+} from 'evergreen-ui';
+import { PageTitle } from 'src/components/atoms';
 import { weeklyMenu, receipes } from 'src/dummyData';
 import { generateWeeklyMenu } from 'src/utils/generateMenu';
 import { FixedNav } from 'src/components/Navigation';
@@ -53,17 +59,20 @@ export default function WeeklyMenu() {
   return (
     <section className="App-section App-weekly-menu">
       <FixedNav />
-      <h2>Weekly Menu</h2>
+      <PageTitle>Weekly Menu</PageTitle>
       {toastStatus.type && toastStatus.message &&
           <div className="App-form-group">
             <Toaster type={toastStatus.type} message={toastStatus.message} />
           </div>
       }
-      <button
-        className="App-btn App-btn__generate-receipe"
-        onClick={handleGenerateWeeklyMenu}>
+      <Button
+        marginTop={majorScale(2)}
+        width="100%"
+        appearance="primary"
+        onClick={handleGenerateWeeklyMenu}
+      >
           Generate New Weekly Meal Plan
-      </button>
+      </Button>
       <table className="App-table">
         <thead>
           <tr>
