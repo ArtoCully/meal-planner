@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Button,
   majorScale,
-  Table,
 } from 'evergreen-ui';
 import { PageTitle } from 'src/components/atoms';
 import { weeklyMenu, receipes } from 'src/dummyData';
