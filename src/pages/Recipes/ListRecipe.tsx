@@ -87,7 +87,11 @@ export default function ListRecipe() {
               width="100%"
               key={recipe._id}
             >
-              <Heading size={500} marginBottom={majorScale(2)}>{recipe.title}</Heading>
+              <Heading
+                size={500}
+                marginBottom={majorScale(2)}
+                textTransform="capitalize"
+              >{recipe.title}</Heading>
               <Heading size={400} marginBottom={majorScale(1)}>When to eat</Heading>
               <Pane is="ul" listStyle="none" paddingLeft="0">
                 {recipe.when.map((w, key) => (
@@ -100,10 +104,22 @@ export default function ListRecipe() {
               <Pane is="ul" listStyle="none" paddingLeft="0">
                 {recipe.ingredients.map((ingredient, key) => (
                   <NextListItem is="li" key={key}>
-                    {ingredient}
+                     <Checkbox disabled checked label={ingredient} />
                   </NextListItem>
                 ))}
               </Pane>
+              {recipe && recipe.tags && recipe.tags.length &&
+                <>
+                  <Heading size={400} marginBottom={majorScale(1)}>Tags</Heading>
+                  <Pane is="ul" listStyle="none" paddingLeft="0">
+                    {recipe.tags.map((tag, key) => (
+                      <NextListItem is="li" key={key}>
+                        <Checkbox disabled checked label={tag} />
+                      </NextListItem>
+                    ))}
+                  </Pane>
+                </>
+              }
               {
                 userHasAccessToRecipe && <Button
                   marginTop={majorScale(2)}

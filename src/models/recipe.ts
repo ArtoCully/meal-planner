@@ -9,4 +9,5 @@ export interface IRecipe {
   title: string;
   when: string[];
   ingredients: string[];
+  tags: string[];
 }

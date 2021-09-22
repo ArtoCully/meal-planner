@@ -20,7 +20,6 @@ import { FixedNav } from 'src/components/Navigation';
 import useAuth from 'src/hooks/useAuth';
 interface IFormObject extends IRecipe {
   whenState: any,
-  tags?: string[],
 }
 
 export default function AddRecipe() {
