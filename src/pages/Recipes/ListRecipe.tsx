@@ -106,7 +106,7 @@ export default function ListRecipe() {
                   </NextListItem>
                 ))}
               </Pane>
-              {recipe && recipe.tags && recipe.tags.length &&
+              {recipe.tags.length > 0 &&
                 <>
                   <Heading size={400} marginBottom={majorScale(1)}>Tags</Heading>
                   <Pane is="ul" listStyle="none" paddingLeft="0">
