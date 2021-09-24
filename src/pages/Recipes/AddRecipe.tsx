@@ -201,9 +201,10 @@ export default function AddRecipe() {
             display="flex"
             alignItems="center"
             justifyContent="flex-start"
+            width="100%"
           >
             <TextInput
-              width="80vw"
+              width="100%"
               type="text"
               name="title"
               onChange={handleOnChangeInputText}
@@ -258,30 +259,31 @@ export default function AddRecipe() {
                 alignItems="center"
                 justifyContent="flex-start"
                 marginBottom={majorScale(1)}
+                width="100%"
               >
                 <TextInput
-                  width="80vw"
+                  width="98vw"
                   type="text" 
                   placeholder={`Enter ingredient ${newKey}`}
                   value={value}
                   data-key={key}
                   onChange={handleOnChangeIngredient}
-                  marginRight={majorScale(1)}
                 />
-                {showDelete &&
-                  <IconButton
-                    height={majorScale(4)}
-                    data-key={key}
-                    data-ingredients={formState.ingredients}
-                    onClick={handleDeleteIngredient}
-                    marginRight={majorScale(1)}
-                    icon={MinusIcon}></IconButton>
-                }
                 {(formState.ingredients.length-1) === key &&
                   <IconButton
                     height={majorScale(4)}
+                    marginLeft={majorScale(1)}
                     onClick={handleAddIngredient(key, value, true)}
                     icon={PlusIcon}></IconButton>
+                }
+                {showDelete &&
+                  <IconButton
+                    height={majorScale(4)}
+                    marginLeft={majorScale(1)}
+                    data-key={key}
+                    data-ingredients={formState.ingredients}
+                    onClick={handleDeleteIngredient}
+                    icon={MinusIcon}></IconButton>
                 }
               </Pane>
             )
@@ -297,6 +299,7 @@ export default function AddRecipe() {
           </Heading>
 
           <TagInput
+            width="100%"
             inputProps={{ placeholder: 'Add tags...' }}
             values={formState.tags}
             onChange={values => {
