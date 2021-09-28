@@ -10,13 +10,11 @@ import {
   Heading,
   TagInput,
   majorScale,
+  toaster,
 } from 'evergreen-ui';
 import { PageTitle } from 'src/components/atoms';
-import { Toaster } from 'src/components/Toaster';
-import { IToaster } from 'src/components/Toaster/models';
 import { IRecipe } from 'src/models/recipe';
 import { createRecipe } from 'src/services/api';
-import { IStatusType } from 'src/models/status';
 import { FixedNav } from 'src/components/Navigation';
 import useAuth from 'src/hooks/useAuth';
 interface IFormObject extends IRecipe {
@@ -25,7 +23,6 @@ interface IFormObject extends IRecipe {
 
 export default function AddRecipe() {
   const { currentUser, setCurrentUser } = useAuth();
-
   const formObject: IFormObject = {
     title: '',
     when: [],
@@ -38,15 +35,12 @@ export default function AddRecipe() {
     tags: [],
   }
 
-  const formStatusObject: IToaster = {
-    type: undefined,
-    message: undefined,
-  }
-
   const [formState, setFormState] = React.useState(formObject);
-  const [formStatus, setFormStatus] = React.useState(formStatusObject);
 
-  React.useEffect(() => {}, [
+  React.useEffect(() => {
+    
+  }, [
+    lastIngredientField,
     formState,
   ]);
 
@@ -117,10 +111,7 @@ export default function AddRecipe() {
 
     if (formResponse) {
       if (formResponse.status === 200) {
-        setFormStatus({
-          type: IStatusType.success,
-          message: 'Successfully saved',
-        });
+        toaster.success('Successfully saved recipe');
 
         setFormState(formObject);
 
@@ -134,10 +125,7 @@ export default function AddRecipe() {
       }
       if (formResponse.status >= 400 && formResponse.status < 500) {
         const message = formResponse.data.message ? formResponse.data.message : 'Something went wrong try again';
-        setFormStatus({
-          type: IStatusType.error,
-          message,
-        })
+        toaster.danger(message);
       }
     }
   };
@@ -183,12 +171,6 @@ export default function AddRecipe() {
       <PageTitle>Add Recipe</PageTitle>
 
       <form className="App-recipe-add__form">
-        {formStatus.type && formStatus.message && 
-          <div className="App-form-group">
-            <Toaster type={formStatus.type} message={formStatus.message} />
-          </div>
-        }
-
         <Pane className="App-form-group">
           <Heading
             size={400}
