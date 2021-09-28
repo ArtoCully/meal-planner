@@ -22,6 +22,7 @@ interface IFormObject extends IRecipe {
 }
 
 export default function AddRecipe() {
+  const lastIngredientField = React.useRef<HTMLInputElement>(null);
   const { currentUser, setCurrentUser } = useAuth();
   const formObject: IFormObject = {
     title: '',
@@ -38,12 +39,15 @@ export default function AddRecipe() {
   const [formState, setFormState] = React.useState(formObject);
 
   React.useEffect(() => {
-    
   }, [
-    lastIngredientField,
     formState,
   ]);
 
+  React.useLayoutEffect(() => {
+    console.log('lastIngre', lastIngredientField); // eslint-disable-line
+  }, [
+    lastIngredientField
+  ])
   const handleDeleteIngredient = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const dataSet = event && event.currentTarget && event.currentTarget.dataset
@@ -80,7 +84,13 @@ export default function AddRecipe() {
     const formData = { ...formState,
       ingredients: updatedIngredientList,
     }
+
     setFormState(formData);
+
+    if (null !== lastIngredientField.current) {
+      lastIngredientField.current.value = String(updatedIngredientList.length - 1);
+      lastIngredientField.current.focus();
+    }
   }
 
   const handleOnChangeIngredient = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -250,6 +260,7 @@ export default function AddRecipe() {
                   value={value}
                   data-key={key}
                   onChange={handleOnChangeIngredient}
+                  ref={lastIngredientField}
                 />
                 {(formState.ingredients.length-1) === key &&
                   <IconButton
