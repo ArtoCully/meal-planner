@@ -43,11 +43,6 @@ export default function AddRecipe() {
     formState,
   ]);
 
-  React.useLayoutEffect(() => {
-    console.log('lastIngre', lastIngredientField); // eslint-disable-line
-  }, [
-    lastIngredientField
-  ])
   const handleDeleteIngredient = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const dataSet = event && event.currentTarget && event.currentTarget.dataset
@@ -61,7 +56,7 @@ export default function AddRecipe() {
     setFormState(formData);
   }
 
-  const handleAddIngredient = (key: number, ingredient: string, inc?: boolean) => (event?: React.MouseEvent<HTMLButtonElement>) => {
+  const handleAddIngredient = (key: number, ingredient: string, inc?: boolean) => async (event?: React.MouseEvent<HTMLButtonElement>) => {
     if (event) {
       event.preventDefault();
     }
@@ -85,10 +80,9 @@ export default function AddRecipe() {
       ingredients: updatedIngredientList,
     }
 
-    setFormState(formData);
+    await setFormState(formData);
 
-    if (null !== lastIngredientField.current) {
-      lastIngredientField.current.value = String(updatedIngredientList.length - 1);
+    if (lastIngredientField.current !== null) {
       lastIngredientField.current.focus();
     }
   }
