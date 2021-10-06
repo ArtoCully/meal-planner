@@ -13,7 +13,7 @@ export default function FixedNav() {
           <NavLink to="/recipes/add" activeClassName="active">Add Receipe</NavLink>
         </li>
         <li>
-          <NavLink to="/recipes/list" activeClassName="active">Receipes</NavLink>
+          <NavLink to="/recipes/list" activeClassName="active">recipes</NavLink>
         </li>
       </ul>
     </nav>

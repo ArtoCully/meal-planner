@@ -4,7 +4,7 @@ export enum ITimeOfMeal {
   dinner = 'dinner'
 }
 
-export interface IReceipe {
+export interface IRecipe {
   title: string;
   when: ITimeOfMeal[];
   ingredients: string[];
@@ -29,7 +29,7 @@ export interface IWeeklyMenuProps {
   [key: string]: IDailyMenuProps[];
 }
 
-export const receipes: IReceipe[] = [
+export const recipes: IRecipe[] = [
   {
     title: 'cereal',
     when: [ITimeOfMeal.breakfast],

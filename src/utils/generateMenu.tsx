@@ -1,13 +1,13 @@
 import {
-  receipes as defaultReceipes,
+  recipes as defaultrecipes,
   ITimeOfMeal,
-  IReceipe,
+  IRecipe,
   IDailyMenuProps,
   IWeeklyMenuProps,
 } from '../dummyData';
 import { generateDayOfWeek, IDayOfWeekText } from './generateDayOfWeek';
 
-export function getRandomMeal(items: IReceipe[], when: ITimeOfMeal): IDailyMenuProps {
+export function getRandomMeal(items: IRecipe[], when: ITimeOfMeal): IDailyMenuProps {
   let randomItem = items[Math.floor(Math.random() * items.length)];
 
   return {
@@ -17,19 +17,19 @@ export function getRandomMeal(items: IReceipe[], when: ITimeOfMeal): IDailyMenuP
 }
 
 export function generateDailyMenu(
-  receipes: IReceipe[] = defaultReceipes,
+  recipes: IRecipe[] = defaultrecipes,
   day: IDayOfWeekText = 'monday'
 ) {
   // get one breakfast,
-  const breakfastMeals = receipes.filter(receipe => receipe.when.indexOf(ITimeOfMeal.breakfast) !== -1);
+  const breakfastMeals = recipes.filter(receipe => receipe.when.indexOf(ITimeOfMeal.breakfast) !== -1);
   const randomBreakfast = getRandomMeal(breakfastMeals, ITimeOfMeal.breakfast);
 
   // get one lunch
-  const lunchMeals = receipes.filter(receipe => receipe.when.indexOf(ITimeOfMeal.lunch) !== -1);
+  const lunchMeals = recipes.filter(receipe => receipe.when.indexOf(ITimeOfMeal.lunch) !== -1);
   const randomLunch = getRandomMeal(lunchMeals, ITimeOfMeal.lunch)
 
   // get one dinner 
-  const dinnerMeals = receipes.filter(receipe => receipe.when.indexOf(ITimeOfMeal.dinner) !== -1);
+  const dinnerMeals = recipes.filter(receipe => receipe.when.indexOf(ITimeOfMeal.dinner) !== -1);
   const randomDinner = getRandomMeal(dinnerMeals, ITimeOfMeal.dinner);
 
   let a = [];
@@ -41,13 +41,13 @@ export function generateDailyMenu(
   return result;
 }
 
-export function generateWeeklyMenu(receipes = defaultReceipes) {
+export function generateWeeklyMenu(recipes = defaultrecipes) {
   const week = [0, 1, 2, 3, 4, 5, 6];
   let result: IWeeklyMenuProps[] = [];
 
   week.forEach(d => {
     const day = generateDayOfWeek(d);
-    const dayMenu = generateDailyMenu(receipes, day);
+    const dayMenu = generateDailyMenu(recipes, day);
     result.push(dayMenu);
   });
 

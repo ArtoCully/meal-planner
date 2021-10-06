@@ -4,7 +4,7 @@ import {
   majorScale,
 } from 'evergreen-ui';
 import { PageTitle } from 'src/components/atoms';
-import { weeklyMenu, receipes } from 'src/dummyData';
+import { weeklyMenu, recipes } from 'src/dummyData';
 import { generateWeeklyMenu } from 'src/utils/generateMenu';
 import { FixedNav } from 'src/components/Navigation';
 import { fetchRecipesByUserId } from 'src/services/api';
@@ -42,7 +42,7 @@ export default function WeeklyMenu() {
       if (recipeResponse.data.length) {
         recipeList = recipeResponse.data;
       } else {
-        recipeList = receipes; // TODO: Fix this typo
+        recipeList = recipes;
         setToastStatus({
           type: IStatusType.information,
           message: 'You do not have any recipes of your own so using example data',
