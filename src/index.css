@@ -1,8 +1,8 @@
 :root {
   --global-navigation-bg: #ffffff;
 
-  --global-primary: #ff9c00;
-  --global-secondary: #00c4ff;
+  --global-primary: #1F3D99;
+  --global-secondary: #5C85FF;
 
   --global-alert: #ff2f00;
   --global-information: #00d9ff;
@@ -12,6 +12,7 @@
   --global-colour-white: #ffffff;
   --global-colour-grey-1: #c5c5c5;
   --global-colour-grey-2: #eeeeee;
+  --global-colour-grey-3: #cccccc;
   --global-colour-slate: #333333;
   --global-colour-orange-1: #ffa500;
   --global-colour-orange-2: #ff7b00;

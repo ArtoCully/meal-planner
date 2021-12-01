@@ -4,17 +4,18 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background: var(--global-navigation-bg);
-  color: var(--global-colour-orange-2);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--global-primary);
   z-index: 999;
-  border-top: 1px solid var(--global-colour-grey-2);
-  box-shadow: 0px 2px 4px rgb(0 0 0 / 27%);
+  border-top: 1px solid var(--global-colour-grey-3);
+  box-shadow: 0px 2px 4px rgb(0 0 0 / 50%);
+  backdrop-filter: blur(10px);
 }
 
 .App-fixed-nav ul {
   list-style: none;
   padding: 0;
-  margin: 15px 0;
+  margin: 10px 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-gap: 10px;
@@ -25,12 +26,12 @@
 }
 
 .App-fixed-nav a {
-  text-transform: uppercase;
+  text-transform: capitalize;
   text-decoration: none;
-  color: var(--global-colour-orange-2);
+  color: var(--global-primary);
   font-weight: bold;
 }
 
 .App-fixed-nav a.active {
-  color: var(--global-colour-orange-1);
+  color: var(--global-secondary);
 }

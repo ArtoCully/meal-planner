@@ -1,19 +1,41 @@
 import React from 'react';
+import styled from 'styled-components';
+import { CalendarIcon, AddIcon, FilterListIcon } from 'evergreen-ui';
 import { NavLink } from 'react-router-dom';
 import './FixedNav.css';
+
+const StyledNavLink = styled(NavLink)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    margin-bottom: 10px;
+  }
+`;
 
 export default function FixedNav() {
   return (
     <nav className="App-fixed-nav">
       <ul>
         <li>
-          <NavLink to="/menu/weekly" activeClassName="active">Weekly Menu</NavLink>
+          <StyledNavLink to="/menu/weekly" activeClassName="active">
+            <CalendarIcon size={15} />
+            weekly menu
+          </StyledNavLink>
         </li>
         <li>
-          <NavLink to="/recipes/add" activeClassName="active">Add Receipe</NavLink>
+          <StyledNavLink to="/recipes/add" activeClassName="active">
+            <AddIcon size={15} />
+            add receipe
+          </StyledNavLink>
         </li>
         <li>
-          <NavLink to="/recipes/list" activeClassName="active">recipes</NavLink>
+          <StyledNavLink to="/recipes/list" activeClassName="active">
+            <FilterListIcon size={15} />
+            recipes
+          </StyledNavLink>
         </li>
       </ul>
     </nav>
