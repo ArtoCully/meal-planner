@@ -9,11 +9,11 @@ import {
   Position,
   PeopleIcon,
   LogOutIcon,
+  DeltaIcon,
 } from 'evergreen-ui';
 import { useHistory, Link } from 'react-router-dom';
 import useProvideAuth from 'src/hooks/useProvideAuth';
 import useAuth from 'src/hooks/useAuth';
-import logo from 'src/logo.svg';
 
 const Header = styled(Pane)`
   background: white;
@@ -33,8 +33,6 @@ const Header = styled(Pane)`
 `;
 
 const LinkLogo = styled(Link)`
-  max-width: 69px;
-  width: 69px;
   height: auto;
   pointer-events: none;
 
@@ -72,7 +70,7 @@ export default function TopHeader() {
 
   return (
     <Header is="header">
-      <LinkLogo to="/"><img src={logo} alt="logo" /></LinkLogo>
+      <LinkLogo to="/"><DeltaIcon size={20} /></LinkLogo>
       {currentUser &&
       <Popover
         position={Position.BOTTOM_LEFT}
