@@ -2,23 +2,41 @@
 .App-weekly-menu .App-table {
   width: 100%;
   padding: 25px 10px;
+  border-collapse: collapse;
+  border: 1px solid var(--global-colour-grey-5);
+}
+
+.App-weekly-menu .App-table thead {
+  background: var(--global-colour-grey-5);
 }
 
 .App-weekly-menu .App-table th[scope="row"] {
   text-transform: capitalize;
   text-align: right;
-  padding-right: 0.5rem;
+  padding: 1rem;
+  padding-right: 0.8rem;
+  background: var(--global-colour-grey-5);
+  color: var(--global-colour-grey-6);
+  font-weight: 400;
+  width: 130px;
 }
 
 .App-weekly-menu .App-table th[scope="col"] {
-  text-transform: capitalize;
+  text-transform: uppercase;
   text-align: left;
-  padding-bottom: 0.5rem;
+  padding: 1rem;
+  color: var(--global-colour-grey-6);
+  font-weight: bold;
+}
+
+.App-weekly-menu .App-table tr {
+  border-bottom: 1px solid var(--global-colour-grey-5);
 }
 
 .App-weekly-menu .App-table td {
   text-align: left;
   padding: 0.3rem;
+  text-transform: capitalize;
 }
 
 @media (max-width: 530px) {
@@ -43,10 +61,12 @@
   .App-weekly-menu .App-table th[scope="row"] {
     text-align: left;
     padding-left: 118px;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 
   .App-weekly-menu .App-table tr {
-    margin: 0 0 20px 0;
+    margin: 0;
     padding: 0 0 20px;
     border-bottom: 1px solid #eee;
     display: flex;
@@ -72,6 +92,7 @@
 
   .App-weekly-menu .App-table tbody td::before {
     font-weight: bold;
+    color: var(--global-colour-grey-6);
   }
 
   .App-weekly-menu .App-table tbody td:nth-of-type(1)::before {
