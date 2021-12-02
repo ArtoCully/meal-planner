@@ -40,7 +40,7 @@ export default function Login() {
 
   },);
 
-  const handleSetInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSetInput = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     const name = event.target.name;
     const value = event.target.value;
@@ -49,9 +49,9 @@ export default function Login() {
       [name]: value,
     }
     setFormState(form);
-  }
+  }, [formState]);
 
-  const handleLogin = async (event: React.SyntheticEvent) => {
+  const handleLogin = React.useCallback(async (event: React.SyntheticEvent) => {
     event.preventDefault();
 
     const response = await login(formState);
@@ -69,7 +69,12 @@ export default function Login() {
         router.push('/');
       }
     }
-  };
+  }, [
+    formState,
+    login,
+    router,
+    setCurrentUser,
+  ]);
 
   return (
     <Pane

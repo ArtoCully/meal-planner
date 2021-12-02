@@ -105,7 +105,7 @@ export default function Signup() {
   // add throttle so input
   // event does not get fired
   // on multiple keypresses
-  const handleSetInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSetInput = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     const name = event.target.name;
     const value = event.target.value;
@@ -114,7 +114,7 @@ export default function Signup() {
       [name]: value,
     }
     setFormState(form);
-  }
+  }, [formState]);
 
   return (
     <Pane
