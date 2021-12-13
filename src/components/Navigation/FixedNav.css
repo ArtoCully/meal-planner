@@ -15,7 +15,7 @@
 .App-fixed-nav ul {
   list-style: none;
   padding: 0;
-  margin: 10px 0;
+  margin: 15px 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-gap: 10px;

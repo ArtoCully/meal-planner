@@ -9,10 +9,6 @@ const StyledNavLink = styled(NavLink)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  svg {
-    margin-bottom: 10px;
-  }
 `;
 
 export default function FixedNav() {
@@ -22,19 +18,16 @@ export default function FixedNav() {
         <li>
           <StyledNavLink to="/menu/weekly" activeClassName="active">
             <CalendarIcon size={15} />
-            weekly menu
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/recipes/add" activeClassName="active">
             <AddIcon size={15} />
-            add receipe
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/recipes/list" activeClassName="active">
             <FilterListIcon size={15} />
-            recipes
           </StyledNavLink>
         </li>
       </ul>
